@@ -1,0 +1,11 @@
+.westan-charts {
+  &__header { margin-bottom: 24px; }
+  &__section { margin-bottom: 40px; }
+
+  h2 {
+    font-family: var(--westan-font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 12px;
+  }
+}

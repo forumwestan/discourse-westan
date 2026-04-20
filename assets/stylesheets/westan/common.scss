@@ -1,0 +1,93 @@
+// Shared variables & shell styles for the Westan plugin.
+
+:root {
+  --westan-accent: #9333ea;
+  --westan-accent-hover: #7c3aed;
+  --westan-accent-dark: #c77cff;
+  --westan-font-sans: "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
+  --westan-font-display: "Roboto Condensed", sans-serif;
+  --westan-radius: 16px;
+  --westan-radius-sm: 10px;
+}
+
+.westan-shell {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+  font-family: var(--westan-font-sans);
+}
+
+.westan-title {
+  font-family: var(--westan-font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  font-size: 2rem;
+  margin: 0 0 16px;
+}
+
+.westan-empty {
+  padding: 32px;
+  border-radius: var(--westan-radius);
+  background: rgba(147, 51, 234, 0.05);
+  text-align: center;
+  color: var(--primary-medium);
+}
+
+.westan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.westan-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border-radius: var(--westan-radius);
+  background: var(--secondary);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s, box-shadow 0.15s;
+
+  img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--westan-radius-sm);
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1);
+  }
+
+  &__title {
+    font-weight: 700;
+    font-family: var(--westan-font-display);
+    letter-spacing: -0.02em;
+  }
+
+  &__meta {
+    color: var(--primary-medium);
+    font-size: 0.875rem;
+  }
+}
+
+.westan-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--primary-low);
+  }
+
+  &__title { font-weight: 600; }
+  &__meta  { color: var(--primary-medium); font-size: 0.875rem; }
+}

@@ -1,0 +1,38 @@
+plugins:
+  westan_enabled:
+    default: true
+    client: true
+
+  # ── Critic ────────────────────────────────────────────────────────────────
+  westan_critic_enabled:
+    default: true
+    client: true
+  westan_critic_editor_group:
+    default: "staff"
+    type: group
+    description: "Group allowed to add albums without a daily quota."
+  westan_critic_daily_quota:
+    default: 10
+    min: 0
+    max: 1000
+
+  # ── Charts (Last.fm) ──────────────────────────────────────────────────────
+  westan_charts_enabled:
+    default: true
+    client: true
+  westan_lastfm_api_key:
+    default: ""
+    secret: true
+
+  # ── Deezer (album search for Critic Add) ──────────────────────────────────
+  westan_deezer_api_base:
+    default: "https://api.deezer.com"
+
+  # ── Side menu ─────────────────────────────────────────────────────────────
+  westan_side_menu_enabled:
+    default: true
+    client: true
+  westan_side_menu_items_json:
+    default: '[]'
+    client: true
+    description: 'JSON array of extra menu items. Each: {"id":"","label":"","path":"","icon":"","visible":true}'

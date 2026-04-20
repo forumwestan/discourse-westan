@@ -1,0 +1,8 @@
+<section class="westan-critic__section">
+  <h1 class="westan-title">{{i18n "westan.critic.nav.releases"}}</h1>
+  <div class="westan-grid">
+    {{#each @model.albums as |album|}}
+      <WestanCritic::AlbumCard @album={{album}} />
+    {{/each}}
+  </div>
+</section>

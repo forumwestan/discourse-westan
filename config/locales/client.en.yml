@@ -1,0 +1,49 @@
+en:
+  js:
+    westan:
+      charts:
+        title: "Westan Charts"
+        period:
+          weekly: "Weekly"
+          monthly: "Monthly"
+          yearly: "Yearly"
+          overall: "Overall"
+        top_artists: "Top Artists"
+        top_albums: "Top Albums"
+        top_tracks: "Top Tracks"
+        recent_tracks: "Recently Played"
+        no_lastfm: "Connect your Last.fm account on your profile to see your charts."
+      critic:
+        title: "Westan Critic"
+        nav:
+          home: "Home"
+          releases: "Best Rated"
+          recent: "Recent"
+          my_reviews: "My Reviews"
+          add: "Add"
+        album:
+          user_score: "User Score"
+          critic_score: "Critic Score"
+          write_review: "Write a review"
+          edit_review: "Edit review"
+          add_press_review: "Add press review"
+          no_reviews: "No reviews yet."
+        review:
+          score_label: "Score (0-100)"
+          body_label: "Your review"
+          save: "Save review"
+        add:
+          title: "Add album or single"
+          search_placeholder: "Search on Deezer…"
+          quota_reached: "Daily limit reached."
+      side_menu:
+        open: "Open menu"
+        close: "Close menu"
+        login: "Sign in"
+        admin_panel: "Admin panel"
+        moderation_panel: "Moderation"
+        vip_panel: "VIP panel"
+  admin_js:
+    site_settings:
+      categories:
+        westan: "Westan"
