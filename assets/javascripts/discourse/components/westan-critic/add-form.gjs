@@ -6,13 +6,16 @@ import { popupAjaxError } from "discourse/lib/ajax-error";
 import DButton from "discourse/components/d-button";
 import { on } from "@ember/modifier";
 import { i18n } from "discourse-i18n";
-import didInsert from "@ember/render-modifiers/modifiers/did-insert";
-
 export default class AddForm extends Component {
   @tracked query = "";
   @tracked results = [];
   @tracked loading = false;
   @tracked type = "album";
+
+  @action
+  updateType(event) {
+    this.type = event.target.value;
+  }
 
   @action
   updateQuery(event) {
@@ -57,7 +60,7 @@ export default class AddForm extends Component {
   <template>
     <div class="westan-add-form">
       <div class="westan-add-form__controls">
-        <select value={{this.type}} {{on "change" (fn (mut this.type) (get "target.value"))}}>
+        <select {{on "change" this.updateType}}>
           <option value="album">Album</option>
           <option value="single">Single</option>
         </select>

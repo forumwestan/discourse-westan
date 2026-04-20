@@ -6,7 +6,6 @@ import { popupAjaxError } from "discourse/lib/ajax-error";
 import DButton from "discourse/components/d-button";
 import { i18n } from "discourse-i18n";
 import { on } from "@ember/modifier";
-import { fn } from "@ember/helper";
 
 export default class ReviewForm extends Component {
   @tracked score = this.args.existing?.score ?? 70;
@@ -63,8 +62,8 @@ export default class ReviewForm extends Component {
       </label>
       <DButton
         @action={{this.submit}}
+        @translatedLabel={{i18n "westan.critic.review.save"}}
         @disabled={{this.saving}}
-        @label="westan.critic.review.save"
         class="btn-primary"
       />
     </form>
