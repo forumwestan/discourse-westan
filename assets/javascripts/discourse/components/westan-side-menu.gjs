@@ -30,6 +30,10 @@ export default class WestanSideMenu extends Component {
     return this.currentUser?.admin || this.currentUser?.moderator;
   }
 
+  get currentUserAvatarUrl() {
+    return this.currentUser?.avatar_template?.replace("{size}", "96");
+  }
+
   @action
   toggle() {
     this.isOpen = !this.isOpen;
@@ -58,7 +62,7 @@ export default class WestanSideMenu extends Component {
         <header class="westan-side-menu__header">
           {{#if this.currentUser}}
             <LinkTo @route="user" @model={{this.currentUser.username}} class="westan-side-menu__avatar">
-              <img src={{this.currentUser.avatar_template}} alt={{this.currentUser.username}} />
+              <img src={{this.currentUserAvatarUrl}} alt={{this.currentUser.username}} />
             </LinkTo>
           {{/if}}
           <button type="button" class="westan-side-menu__close" {{on "click" this.close}} aria-label={{i18n "westan.side_menu.close"}}>

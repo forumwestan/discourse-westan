@@ -3,6 +3,7 @@
 module Westan
   class CriticAlbum < ActiveRecord::Base
     self.table_name = "westan_critic_albums"
+    self.inheritance_column = :_type_disabled
 
     TYPES = %w[album single].freeze
 

@@ -37,10 +37,6 @@ after_initialize do
   require_relative "app/controllers/westan/lastfm_controller"
   require_relative "app/controllers/westan/deezer_controller"
 
-  Discourse::Application.routes.append do
-    mount ::Westan::Engine, at: "/westan"
-  end
-
   Westan::Engine.routes.draw do
     # Critic
     get    "/critic/albums"                  => "critic_albums#index"
@@ -57,6 +53,10 @@ after_initialize do
     # Proxies to external APIs
     get    "/lastfm/:method"                 => "lastfm#proxy"
     get    "/deezer/search-album"            => "deezer#search_album"
+  end
+
+  Discourse::Application.routes.prepend do
+    mount ::Westan::Engine, at: "/westan"
   end
 
   # Extend User with Westan-specific capabilities
