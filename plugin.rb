@@ -56,7 +56,21 @@ after_initialize do
   end
 
   Discourse::Application.routes.prepend do
-    mount ::Westan::Engine, at: "/westan"
+    # Register direct Discourse routes so the JSON APIs are not swallowed by the
+    # app fallback route before the mounted engine gets a chance to answer.
+    get    "/westan/critic/albums"           => "westan/critic_albums#index"
+    get    "/westan/critic/albums/:slug"     => "westan/critic_albums#show"
+    post   "/westan/critic/albums"           => "westan/critic_albums#create"
+    patch  "/westan/critic/albums/:id"       => "westan/critic_albums#update"
+    delete "/westan/critic/albums/:id"       => "westan/critic_albums#destroy"
+
+    get    "/westan/critic/reviews"          => "westan/critic_reviews#index"
+    post   "/westan/critic/reviews"          => "westan/critic_reviews#create"
+    patch  "/westan/critic/reviews/:id"      => "westan/critic_reviews#update"
+    delete "/westan/critic/reviews/:id"      => "westan/critic_reviews#destroy"
+
+    get    "/westan/lastfm/:method"          => "westan/lastfm#proxy"
+    get    "/westan/deezer/search-album"     => "westan/deezer#search_album"
   end
 
   # Extend User with Westan-specific capabilities
