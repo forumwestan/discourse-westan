@@ -27,6 +27,9 @@ plugins:
   westan_lastfm_api_key:
     default: ""
     secret: true
+  westan_lastfm_shared_secret:
+    default: ""
+    secret: true
 
   # ── Deezer (album search for Critic Add) ──────────────────────────────────
   westan_deezer_api_base:

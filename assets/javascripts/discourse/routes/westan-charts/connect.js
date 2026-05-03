@@ -9,7 +9,10 @@ export default class WestanChartsConnectRoute extends DiscourseRoute {
   }
 
   model() {
+    const token = new URLSearchParams(window.location.search).get("token");
+
     return {
+      token,
       username:
         this.currentUser?.westan_lastfm_username ||
         this.currentUser?.custom_fields?.lastfm_username ||

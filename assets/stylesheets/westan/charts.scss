@@ -117,3 +117,39 @@
     }
   }
 }
+
+.westan-lastfm-form--status {
+  color: #667085;
+  font-weight: 900;
+  text-align: center;
+}
+
+.westan-lastfm-auth-button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 999px;
+  background: #d51007;
+  color: #fff;
+  font-weight: 950;
+
+  &:hover {
+    background: #b60d06;
+    color: #fff;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+  }
+}
+
+.westan-lastfm-divider {
+  margin: 20px 0;
+  color: #98a2b3;
+  font-size: 0.85rem;
+  font-weight: 900;
+  text-align: center;
+}

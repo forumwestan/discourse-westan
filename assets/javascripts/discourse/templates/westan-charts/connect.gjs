@@ -13,6 +13,6 @@ import LastfmConnectForm from "../../components/westan-charts/lastfm-connect-for
     <p>{{i18n "westan.charts.connect_lastfm_description"}}</p>
   </header>
 
-  <LastfmConnectForm @username={{@model.username}} />
+  <LastfmConnectForm @username={{@model.username}} @token={{@model.token}} />
 </div>
 </template>

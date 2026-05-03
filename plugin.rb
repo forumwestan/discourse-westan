@@ -55,6 +55,8 @@ after_initialize do
     post   "/critic/reviews/:id/vote"        => "critic_reviews#vote"
 
     # Proxies to external APIs
+    get    "/lastfm/auth-url"                => "lastfm#auth_url"
+    post   "/lastfm/session"                 => "lastfm#create_session"
     patch  "/lastfm/username"                => "lastfm#update_username"
     post   "/lastfm/username"                => "lastfm#update_username"
     get    "/lastfm/*method"                 => "lastfm#proxy", format: false
@@ -77,6 +79,8 @@ after_initialize do
     delete "/westan/critic/reviews/:id"      => "westan/critic_reviews#destroy"
     post   "/westan/critic/reviews/:id/vote" => "westan/critic_reviews#vote"
 
+    get    "/westan/lastfm/auth-url"         => "westan/lastfm#auth_url"
+    post   "/westan/lastfm/session"          => "westan/lastfm#create_session"
     patch  "/westan/lastfm/username"         => "westan/lastfm#update_username"
     post   "/westan/lastfm/username"         => "westan/lastfm#update_username"
     get    "/westan/lastfm/*method"          => "westan/lastfm#proxy", format: false
@@ -91,6 +95,7 @@ after_initialize do
   end
 
   User.register_custom_field_type("lastfm_username", :text)
+  User.register_custom_field_type("lastfm_session_key", :text)
   register_editable_user_custom_field :lastfm_username
   DiscoursePluginRegistry.serialized_current_user_fields << "lastfm_username"
 
