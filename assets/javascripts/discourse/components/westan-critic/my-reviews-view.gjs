@@ -1,5 +1,6 @@
 import Component from "@glimmer/component";
 import { action } from "@ember/object";
+import { on } from "@ember/modifier";
 import { tracked } from "@glimmer/tracking";
 import MyReviewRow from "./my-review-row";
 
