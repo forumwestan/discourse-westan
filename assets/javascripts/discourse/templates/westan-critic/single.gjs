@@ -32,15 +32,13 @@ import ReviewItem from "../../components/westan-critic/review-item";
         />
       </div>
       <div class="westan-album-page__buttons">
-        {{#if this.currentUser}}
-          <LinkTo
-            @route="westan-critic.single-review"
-            @model={{@model.album.slug}}
-            class="westan-album-page__review-button"
-          >
-            ☆ Avaliar single
-          </LinkTo>
-        {{/if}}
+        <LinkTo
+          @route="westan-critic.single-review"
+          @model={{@model.album.slug}}
+          class="westan-album-page__review-button"
+        >
+          ☆ Avaliar single
+        </LinkTo>
         <button type="button" class="westan-album-page__favorite-button" aria-label="Favoritar">
           ♡
         </button>

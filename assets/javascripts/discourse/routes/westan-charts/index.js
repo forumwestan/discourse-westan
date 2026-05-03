@@ -4,7 +4,8 @@ import { ajax } from "discourse/lib/ajax";
 export default class WestanChartsIndexRoute extends DiscourseRoute {
   async model() {
     const user = this.currentUser;
-    const lastfmUsername = user?.custom_fields?.lastfm_username;
+    const lastfmUsername =
+      user?.westan_lastfm_username || user?.custom_fields?.lastfm_username;
     if (!lastfmUsername) {
       return { hasLastfm: false };
     }

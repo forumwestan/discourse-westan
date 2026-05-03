@@ -73,6 +73,10 @@ after_initialize do
     get    "/westan/deezer/search-album"     => "westan/deezer#search_album"
   end
 
+  User.register_custom_field_type("lastfm_username", :text)
+  register_editable_user_custom_field :lastfm_username
+  DiscoursePluginRegistry.serialized_current_user_fields << "lastfm_username"
+
   # Extend User with Westan-specific capabilities
   add_to_class(:user, :westan_can_add_critic_album?) do
     return true if staff? || groups.where(name: SiteSetting.westan_critic_editor_group).exists?
@@ -84,5 +88,9 @@ after_initialize do
   add_to_serializer(:current_user, :westan_is_critic_editor) do
     object.staff? ||
       object.groups.where(name: SiteSetting.westan_critic_editor_group).exists?
+  end
+
+  add_to_serializer(:current_user, :westan_lastfm_username) do
+    object.custom_fields["lastfm_username"]
   end
 end

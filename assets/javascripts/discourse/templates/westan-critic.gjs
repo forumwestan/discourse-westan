@@ -5,9 +5,7 @@ import { LinkTo } from "@ember/routing";
 <div class="westan-shell westan-critic-shell">
   <nav class="westan-critic__nav">
     <LinkTo @route="westan-critic.index" class="westan-critic__nav-link">{{i18n "westan.critic.nav.home"}}</LinkTo>
-    {{#if this.currentUser}}
-      <LinkTo @route="westan-critic.my-reviews" class="westan-critic__nav-link">{{i18n "westan.critic.nav.my_reviews"}}</LinkTo>
-    {{/if}}
+    <LinkTo @route="westan-critic.my-reviews" class="westan-critic__nav-link">{{i18n "westan.critic.nav.my_reviews"}}</LinkTo>
     <LinkTo @route="westan-critic.releases" class="westan-critic__nav-link">{{i18n "westan.critic.nav.releases"}}</LinkTo>
     <LinkTo @route="westan-critic.recent" class="westan-critic__nav-link">{{i18n "westan.critic.nav.recent"}}</LinkTo>
   </nav>

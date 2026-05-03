@@ -20,13 +20,11 @@ import AlbumCard from "../../components/westan-critic/album-card";
   <strong></strong>
 </div>
 
-{{#if this.currentUser}}
-  <div class="westan-critic__actions">
-    <LinkTo @route="westan-critic.add" class="westan-critic__add-button">
-      Adicionar
-    </LinkTo>
-  </div>
-{{/if}}
+<div class="westan-critic__actions">
+  <LinkTo @route="westan-critic.add" class="westan-critic__add-button">
+    Adicionar
+  </LinkTo>
+</div>
 
 {{#if @model.upcoming}}
   <section class="westan-critic__section westan-critic__section--feature">
