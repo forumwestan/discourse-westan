@@ -1,0 +1,6 @@
+en:
+  westan:
+    critic:
+      add:
+        quota_reached: "Daily limit reached."
+        already_added: "Já adicionado"

@@ -15,6 +15,10 @@ plugins:
     default: 10
     min: 0
     max: 1000
+  westan_critic_hero_cards_json:
+    default: '[{"id":"critic-hero-1","title":"Adicione as avaliações de críticos especialistas","subtitle":"","background":"linear-gradient(135deg, #f463b4 0%, #ec4899 58%, #f05aa9 100%)","heroImage":"","ctaLabel":"Como funciona","ctaHref":"/critic/recent"}]'
+    client: true
+    description: 'JSON array for Critic home banners. Each: {"id":"","title":"","subtitle":"","background":"","heroImage":"","ctaLabel":"","ctaHref":""}'
 
   # ── Charts (Last.fm) ──────────────────────────────────────────────────────
   westan_charts_enabled:

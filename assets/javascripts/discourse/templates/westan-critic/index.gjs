@@ -1,24 +1,10 @@
 import { i18n } from "discourse-i18n";
 import { LinkTo } from "@ember/routing";
 import AlbumCard from "../../components/westan-critic/album-card";
+import HeroSlider from "../../components/westan-critic/hero-slider";
 
 <template>
-<section class="westan-critic-hero">
-  <div class="westan-critic-hero__copy">
-    <h1>Adicione as avaliações de críticos especialistas</h1>
-    <LinkTo @route="westan-critic.recent" class="westan-critic-hero__cta">
-      Como funciona →
-    </LinkTo>
-  </div>
-  <div class="westan-critic-hero__art" aria-hidden="true">
-    <span>♪</span>
-  </div>
-</section>
-
-<div class="westan-critic-hero__dots" aria-hidden="true">
-  <span></span>
-  <strong></strong>
-</div>
+<HeroSlider />
 
 <div class="westan-critic__actions">
   <LinkTo @route="westan-critic.add" class="westan-critic__add-button">

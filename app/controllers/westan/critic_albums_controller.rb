@@ -32,6 +32,26 @@ module Westan
         return render json: { error: I18n.t("westan.critic.add.quota_reached") }, status: 429
       end
 
+      existing = CriticAlbum.where(
+        "lower(title) = ? AND lower(artist) = ? AND type = ?",
+        params[:title].to_s.downcase,
+        params[:artist].to_s.downcase,
+        params[:type].to_s
+      ).first
+
+      if existing
+        return render json: {
+          error: I18n.t("westan.critic.add.already_added"),
+          album: {
+            id: existing.id,
+            slug: existing.slug,
+            type: existing.type,
+            title: existing.title,
+            artist: existing.artist
+          }
+        }, status: 409
+      end
+
       album = CriticAlbum.new(album_params.merge(created_by_id: current_user.id))
       if album.save
         render_serialized(album, CriticAlbumSerializer, root: "album")

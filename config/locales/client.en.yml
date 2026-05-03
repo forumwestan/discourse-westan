@@ -33,9 +33,10 @@ en:
           body_label: "Your review"
           save: "Save review"
         add:
-          title: "Add album or single"
-          search_placeholder: "Search on Deezer…"
+          title: "Adicionar álbum"
+          search_placeholder: "Buscar álbum ou artista na biblioteca..."
           quota_reached: "Daily limit reached."
+          already_added: "Já adicionado"
       side_menu:
         open: "Open menu"
         close: "Close menu"
