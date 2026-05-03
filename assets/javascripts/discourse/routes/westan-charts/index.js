@@ -21,7 +21,7 @@ export default class WestanChartsIndexRoute extends DiscourseRoute {
       };
     }
 
-    const [artists, albums, tracks] = await Promise.all([
+    const [artists, albums, tracks, recent] = await Promise.all([
       lastfmAjax(`/westan/lastfm/user.gettopartists`, {
         user: lastfmUsername,
         period: "1month",
@@ -37,6 +37,10 @@ export default class WestanChartsIndexRoute extends DiscourseRoute {
         period: "1month",
         limit: 20,
       }),
+      lastfmAjax(`/westan/lastfm/user.getrecenttracks`, {
+        user: lastfmUsername,
+        limit: 6,
+      }),
     ]);
 
     return {
@@ -45,7 +49,12 @@ export default class WestanChartsIndexRoute extends DiscourseRoute {
       artists: artists?.topartists?.artist || [],
       albums: albums?.topalbums?.album || [],
       tracks: tracks?.toptracks?.track || [],
-      lastfmError: artists?.westan_error || albums?.westan_error || tracks?.westan_error,
+      recentTracks: recent?.recenttracks?.track || [],
+      lastfmError:
+        artists?.westan_error ||
+        albums?.westan_error ||
+        tracks?.westan_error ||
+        recent?.westan_error,
     };
   }
 }

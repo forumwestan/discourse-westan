@@ -5,6 +5,7 @@ export default function () {
 
   this.route("westan-charts", { path: "/charts" }, function () {
     this.route("recent", { path: "/recent" });
+    this.route("streaming", { path: "/streaming" });
     this.route("connect", { path: "/connect" });
     this.route("artist", { path: "/artist/:artist_name" });
   });

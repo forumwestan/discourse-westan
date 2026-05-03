@@ -1,13 +1,14 @@
 import { i18n } from "discourse-i18n";
 import { LinkTo } from "@ember/routing";
+import RankingList from "../../components/westan-charts/ranking-list";
 
 <template>
 <div class="westan-charts">
-  <header class="westan-charts__header">
-    <h1 class="westan-title">{{i18n "westan.charts.recent_tracks"}}</h1>
-  </header>
-
   {{#unless @model.hasLastfm}}
+    <header class="westan-charts__header">
+      <h1 class="westan-title">{{i18n "westan.charts.recent_tracks"}}</h1>
+    </header>
+
     <div class="westan-empty westan-charts-connect">
       <p>{{i18n "westan.charts.no_lastfm"}}</p>
       {{#if @model.isLoggedIn}}
@@ -30,14 +31,7 @@ import { LinkTo } from "@ember/routing";
       </div>
     {{/if}}
 
-    <ol class="westan-list">
-      {{#each @model.tracks as |track|}}
-        <li>
-          <span class="westan-list__title">{{track.name}}</span>
-          <span class="westan-list__meta">{{track.artist.#text}}</span>
-        </li>
-      {{/each}}
-    </ol>
+    <RankingList @items={{@model.artists}} />
   {{/unless}}
 </div>
 </template>

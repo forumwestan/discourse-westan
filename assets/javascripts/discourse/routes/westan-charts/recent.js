@@ -15,8 +15,8 @@ export default class WestanChartsRecentRoute extends DiscourseRoute {
     let res = {};
     let lastfmError = null;
     try {
-      res = await ajax(`/westan/lastfm/user.getrecenttracks`, {
-        data: { user: lastfmUsername, limit: 50 },
+      res = await ajax(`/westan/lastfm/user.gettopartists`, {
+        data: { user: lastfmUsername, period: "7day", limit: 50 },
       });
     } catch (error) {
       lastfmError = error;
@@ -24,7 +24,7 @@ export default class WestanChartsRecentRoute extends DiscourseRoute {
 
     return {
       hasLastfm: true,
-      tracks: res?.recenttracks?.track || [],
+      artists: res?.topartists?.artist || [],
       lastfmError,
     };
   }
