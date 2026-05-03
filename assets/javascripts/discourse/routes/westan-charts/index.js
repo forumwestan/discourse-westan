@@ -1,6 +1,14 @@
 import DiscourseRoute from "discourse/routes/discourse";
 import { ajax } from "discourse/lib/ajax";
 
+async function lastfmAjax(path, data) {
+  try {
+    return await ajax(path, { data });
+  } catch (error) {
+    return { westan_error: error };
+  }
+}
+
 export default class WestanChartsIndexRoute extends DiscourseRoute {
   async model() {
     const user = this.currentUser;
@@ -14,14 +22,20 @@ export default class WestanChartsIndexRoute extends DiscourseRoute {
     }
 
     const [artists, albums, tracks] = await Promise.all([
-      ajax(`/westan/lastfm/user.gettopartists`, {
-        data: { user: lastfmUsername, period: "1month", limit: 20 },
+      lastfmAjax(`/westan/lastfm/user.gettopartists`, {
+        user: lastfmUsername,
+        period: "1month",
+        limit: 20,
       }),
-      ajax(`/westan/lastfm/user.gettopalbums`, {
-        data: { user: lastfmUsername, period: "1month", limit: 20 },
+      lastfmAjax(`/westan/lastfm/user.gettopalbums`, {
+        user: lastfmUsername,
+        period: "1month",
+        limit: 20,
       }),
-      ajax(`/westan/lastfm/user.gettoptracks`, {
-        data: { user: lastfmUsername, period: "1month", limit: 20 },
+      lastfmAjax(`/westan/lastfm/user.gettoptracks`, {
+        user: lastfmUsername,
+        period: "1month",
+        limit: 20,
       }),
     ]);
 
@@ -31,6 +45,7 @@ export default class WestanChartsIndexRoute extends DiscourseRoute {
       artists: artists?.topartists?.artist || [],
       albums: albums?.topalbums?.album || [],
       tracks: tracks?.toptracks?.track || [],
+      lastfmError: artists?.westan_error || albums?.westan_error || tracks?.westan_error,
     };
   }
 }

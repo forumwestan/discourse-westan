@@ -21,6 +21,15 @@ import { LinkTo } from "@ember/routing";
       {{/if}}
     </div>
   {{else}}
+    {{#if @model.lastfmError}}
+      <div class="westan-empty westan-charts-connect">
+        <p>{{i18n "westan.charts.lastfm_error"}}</p>
+        <LinkTo @route="westan-charts.connect" class="westan-charts-connect__button">
+          {{i18n "westan.charts.edit_lastfm"}}
+        </LinkTo>
+      </div>
+    {{/if}}
+
     <ol class="westan-list">
       {{#each @model.tracks as |track|}}
         <li>

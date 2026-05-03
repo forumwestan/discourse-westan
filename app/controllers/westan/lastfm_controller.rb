@@ -23,9 +23,13 @@ module Westan
     ].freeze
 
     def proxy
-      method = params[:method].to_s.downcase
+      method = lastfm_method
       unless ALLOWED_METHODS.include?(method)
-        return render json: { error: "method not allowed" }, status: 400
+        return render json: {
+          error: "method not allowed",
+          method: method,
+          allowed_methods: ALLOWED_METHODS
+        }, status: 400
       end
 
       api_key = SiteSetting.westan_lastfm_api_key
@@ -58,6 +62,19 @@ module Westan
         success: true,
         lastfm_username: username
       }
+    end
+
+    private
+
+    def lastfm_method
+      method = params[:method].to_s
+      format = params[:format].to_s
+
+      if format.present? && !method.include?(".")
+        method = "#{method}.#{format}"
+      end
+
+      method.downcase
     end
   end
 end

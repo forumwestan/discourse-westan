@@ -12,12 +12,20 @@ export default class WestanChartsRecentRoute extends DiscourseRoute {
         isLoggedIn: Boolean(this.currentUser),
       };
     }
-    const res = await ajax(`/westan/lastfm/user.getrecenttracks`, {
-      data: { user: lastfmUsername, limit: 50 },
-    });
+    let res = {};
+    let lastfmError = null;
+    try {
+      res = await ajax(`/westan/lastfm/user.getrecenttracks`, {
+        data: { user: lastfmUsername, limit: 50 },
+      });
+    } catch (error) {
+      lastfmError = error;
+    }
+
     return {
       hasLastfm: true,
       tracks: res?.recenttracks?.track || [],
+      lastfmError,
     };
   }
 }

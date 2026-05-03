@@ -57,7 +57,7 @@ after_initialize do
     # Proxies to external APIs
     patch  "/lastfm/username"                => "lastfm#update_username"
     post   "/lastfm/username"                => "lastfm#update_username"
-    get    "/lastfm/*method"                 => "lastfm#proxy"
+    get    "/lastfm/*method"                 => "lastfm#proxy", format: false
     get    "/deezer/search-album"            => "deezer#search_album"
   end
 
@@ -79,7 +79,7 @@ after_initialize do
 
     patch  "/westan/lastfm/username"         => "westan/lastfm#update_username"
     post   "/westan/lastfm/username"         => "westan/lastfm#update_username"
-    get    "/westan/lastfm/*method"          => "westan/lastfm#proxy"
+    get    "/westan/lastfm/*method"          => "westan/lastfm#proxy", format: false
     get    "/westan/deezer/search-album"     => "westan/deezer#search_album"
   end
 

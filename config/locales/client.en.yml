@@ -18,6 +18,8 @@ en:
         lastfm_username: "Last.fm username"
         lastfm_username_placeholder: "Your Last.fm username"
         save_lastfm: "Save Last.fm"
+        edit_lastfm: "Edit Last.fm"
+        lastfm_error: "We couldn't load your Last.fm charts. Check your username and try again."
         sign_in_to_connect: "Sign in to connect"
       critic:
         title: "Westan Critic"
