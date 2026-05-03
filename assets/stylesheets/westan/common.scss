@@ -91,3 +91,31 @@
   &__title { font-weight: 600; }
   &__meta  { color: var(--primary-medium); font-size: 0.875rem; }
 }
+
+html.dark .westan-shell,
+body.dark .westan-shell,
+body[class*="dark"] .westan-shell {
+  color: #f8fafc;
+
+  .westan-title,
+  h1,
+  h2,
+  h3 {
+    color: #f8fafc;
+  }
+
+  .westan-card,
+  .westan-empty {
+    background: #fff;
+    color: #111827;
+  }
+
+  .westan-card__meta,
+  .westan-list__meta {
+    color: #667085;
+  }
+
+  .westan-list li {
+    border-bottom-color: rgba(255, 255, 255, 0.14);
+  }
+}

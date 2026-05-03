@@ -11,8 +11,11 @@ export default class WestanCriticMyReviewsRoute extends DiscourseRoute {
 
   async model() {
     const res = await ajax("/westan/critic/reviews", {
-      data: { user_id: this.currentUser.id, kind: "user" },
+      data: { user_id: this.currentUser.id, kind: "user", limit: 200 },
     });
-    return { reviews: res.reviews || [] };
+    return {
+      username: this.currentUser.username,
+      reviews: res.reviews || [],
+    };
   }
 }

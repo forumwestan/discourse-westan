@@ -9,7 +9,7 @@ module Westan
     PAGE_SIZE = 10
 
     def index
-      scope = CriticReview.all
+      scope = CriticReview.includes(:album, :user, :votes)
       scope = scope.where(album_id: params[:album_id]) if params[:album_id].present?
 
       case params[:kind]
@@ -20,7 +20,8 @@ module Westan
       scope = scope.where(user_id: params[:user_id]) if params[:user_id].present?
 
       page = [(params[:page] || 1).to_i, 1].max
-      scope = scope.order(created_at: :desc).offset((page - 1) * PAGE_SIZE).limit(PAGE_SIZE)
+      limit = [[(params[:limit] || PAGE_SIZE).to_i, 1].max, 200].min
+      scope = scope.order(created_at: :desc).offset((page - 1) * limit).limit(limit)
 
       render_serialized(scope, CriticReviewSerializer, root: "reviews")
     end

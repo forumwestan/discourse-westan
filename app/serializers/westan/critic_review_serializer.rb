@@ -7,7 +7,9 @@ module Westan
                :needs_correction, :created_at,
                :username, :display_name, :avatar_template,
                :likes_count, :dislikes_count, :my_vote,
-               :editable_by_current_user
+               :editable_by_current_user,
+               :album_slug, :album_title, :album_artist,
+               :album_cover_url, :album_type
 
     def username
       object.user&.username
@@ -37,6 +39,26 @@ module Westan
 
     def editable_by_current_user
       object.editable_by?(scope&.user)
+    end
+
+    def album_slug
+      object.album&.slug
+    end
+
+    def album_title
+      object.album&.title
+    end
+
+    def album_artist
+      object.album&.artist
+    end
+
+    def album_cover_url
+      object.album&.cover_url
+    end
+
+    def album_type
+      object.album&.type
     end
   end
 end
