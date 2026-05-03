@@ -6,6 +6,7 @@ module Westan
                :release_date, :is_upcoming, :spotify_url,
                :avg_user_score, :avg_critic_score,
                :user_review_count, :critic_review_count,
+               :favorite_count, :favorited_by_current_user,
                :created_at
 
     def avg_user_score
@@ -22,6 +23,16 @@ module Westan
 
     def critic_review_count
       object.critic_reviews.count
+    end
+
+    def favorite_count
+      object.favorites.count
+    end
+
+    def favorited_by_current_user
+      user_id = scope&.user&.id
+      return false unless user_id
+      object.favorites.where(user_id: user_id).exists?
     end
   end
 end

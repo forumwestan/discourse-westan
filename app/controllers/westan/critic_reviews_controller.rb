@@ -4,7 +4,7 @@ module Westan
   class CriticReviewsController < ::ApplicationController
     requires_plugin Westan::PLUGIN_NAME
 
-    before_action :ensure_logged_in, only: [:create, :update, :destroy]
+    before_action :ensure_logged_in, only: [:create, :update, :destroy, :vote]
 
     PAGE_SIZE = 10
 
@@ -53,6 +53,30 @@ module Westan
       raise Discourse::InvalidAccess unless review.editable_by?(current_user)
       review.destroy!
       render json: success_json
+    end
+
+    def vote
+      review = CriticReview.find(params[:id])
+      requested_vote = params[:vote].to_s
+      raise Discourse::InvalidParameters.new(:vote) unless CriticReviewVote::VOTES.include?(requested_vote)
+
+      existing = CriticReviewVote.find_by(review_id: review.id, user_id: current_user.id)
+      if existing&.vote == requested_vote
+        existing.destroy!
+        my_vote = nil
+      elsif existing
+        existing.update!(vote: requested_vote)
+        my_vote = requested_vote
+      else
+        CriticReviewVote.create!(review_id: review.id, user_id: current_user.id, vote: requested_vote)
+        my_vote = requested_vote
+      end
+
+      render json: {
+        likes_count: review.votes.where(vote: "like").count,
+        dislikes_count: review.votes.where(vote: "dislike").count,
+        my_vote: my_vote
+      }
     end
 
     private

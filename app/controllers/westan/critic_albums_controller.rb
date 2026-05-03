@@ -4,7 +4,7 @@ module Westan
   class CriticAlbumsController < ::ApplicationController
     requires_plugin Westan::PLUGIN_NAME
 
-    before_action :ensure_logged_in, only: [:create, :update, :destroy]
+    before_action :ensure_logged_in, only: [:create, :update, :destroy, :toggle_favorite]
 
     def index
       scope = CriticAlbum.all
@@ -55,6 +55,24 @@ module Westan
       guardian_check!(album)
       album.destroy!
       render json: success_json
+    end
+
+    def toggle_favorite
+      album = CriticAlbum.find(params[:id])
+      favorite = CriticFavorite.find_by(album_id: album.id, user_id: current_user.id)
+
+      if favorite
+        favorite.destroy!
+        favorited = false
+      else
+        CriticFavorite.create!(album_id: album.id, user_id: current_user.id)
+        favorited = true
+      end
+
+      render json: {
+        favorited: favorited,
+        favorite_count: album.favorites.count
+      }
     end
 
     private

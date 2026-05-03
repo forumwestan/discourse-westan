@@ -12,6 +12,11 @@ module Westan
              foreign_key: :album_id,
              dependent: :destroy
 
+    has_many :favorites,
+             class_name: "Westan::CriticFavorite",
+             foreign_key: :album_id,
+             dependent: :destroy
+
     belongs_to :created_by,
                class_name: "::User",
                foreign_key: :created_by_id,

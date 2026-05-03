@@ -1,6 +1,8 @@
 import { i18n } from "discourse-i18n";
 import { LinkTo } from "@ember/routing";
 import ScoreMeter from "../../components/westan-critic/score-meter";
+import AlbumActions from "../../components/westan-critic/album-actions";
+import ReviewList from "../../components/westan-critic/review-list";
 import ReviewItem from "../../components/westan-critic/review-item";
 
 <template>
@@ -31,35 +33,19 @@ import ReviewItem from "../../components/westan-critic/review-item";
           @count={{@model.album.critic_review_count}}
         />
       </div>
-      <div class="westan-album-page__buttons">
-        <LinkTo
-          @route="westan-critic.album-review"
-          @model={{@model.album.slug}}
-          class="westan-album-page__review-button"
-        >
-          ☆ Avaliar álbum
-        </LinkTo>
-        <button type="button" class="westan-album-page__favorite-button" aria-label="Favoritar">
-          ♡
-        </button>
-      </div>
+      <AlbumActions
+        @album={{@model.album}}
+        @userReviews={{@model.userReviews}}
+      />
     </div>
   </header>
 
   <section class="westan-album-page__reviews">
-    <div class="westan-album-page__reviews-header">
-      <h2>Avaliações</h2>
-      <button type="button" class="westan-album-page__filter-button">Todas</button>
-    </div>
-    {{#if @model.userReviews.length}}
-      <ul class="westan-review-list">
-        {{#each @model.userReviews as |r|}}
-          <ReviewItem @review={{r}} />
-        {{/each}}
-      </ul>
-    {{else}}
-      <div class="westan-empty">{{i18n "westan.critic.album.no_reviews"}}</div>
-    {{/if}}
+    <ReviewList
+      @title="Avaliações"
+      @reviews={{@model.userReviews}}
+      @emptyText={{i18n "westan.critic.album.no_reviews"}}
+    />
 
     <h2 class="westan-album-page__press-title">Crítica da imprensa</h2>
     {{#if @model.pressReviews.length}}

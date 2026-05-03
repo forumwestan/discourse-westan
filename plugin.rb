@@ -30,6 +30,8 @@ require_relative "lib/westan/engine"
 after_initialize do
   require_relative "app/models/westan/critic_album"
   require_relative "app/models/westan/critic_review"
+  require_relative "app/models/westan/critic_favorite"
+  require_relative "app/models/westan/critic_review_vote"
   require_relative "app/serializers/westan/critic_album_serializer"
   require_relative "app/serializers/westan/critic_review_serializer"
   require_relative "app/controllers/westan/critic_albums_controller"
@@ -44,11 +46,13 @@ after_initialize do
     post   "/critic/albums"                  => "critic_albums#create"
     patch  "/critic/albums/:id"              => "critic_albums#update"
     delete "/critic/albums/:id"              => "critic_albums#destroy"
+    post   "/critic/albums/:id/favorite"     => "critic_albums#toggle_favorite"
 
     get    "/critic/reviews"                 => "critic_reviews#index"
     post   "/critic/reviews"                 => "critic_reviews#create"
     patch  "/critic/reviews/:id"             => "critic_reviews#update"
     delete "/critic/reviews/:id"             => "critic_reviews#destroy"
+    post   "/critic/reviews/:id/vote"        => "critic_reviews#vote"
 
     # Proxies to external APIs
     get    "/lastfm/:method"                 => "lastfm#proxy"
@@ -63,11 +67,13 @@ after_initialize do
     post   "/westan/critic/albums"           => "westan/critic_albums#create"
     patch  "/westan/critic/albums/:id"       => "westan/critic_albums#update"
     delete "/westan/critic/albums/:id"       => "westan/critic_albums#destroy"
+    post   "/westan/critic/albums/:id/favorite" => "westan/critic_albums#toggle_favorite"
 
     get    "/westan/critic/reviews"          => "westan/critic_reviews#index"
     post   "/westan/critic/reviews"          => "westan/critic_reviews#create"
     patch  "/westan/critic/reviews/:id"      => "westan/critic_reviews#update"
     delete "/westan/critic/reviews/:id"      => "westan/critic_reviews#destroy"
+    post   "/westan/critic/reviews/:id/vote" => "westan/critic_reviews#vote"
 
     get    "/westan/lastfm/:method"          => "westan/lastfm#proxy"
     get    "/westan/deezer/search-album"     => "westan/deezer#search_album"

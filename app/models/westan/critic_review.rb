@@ -13,6 +13,11 @@ module Westan
                foreign_key: :user_id,
                optional: true
 
+    has_many :votes,
+             class_name: "Westan::CriticReviewVote",
+             foreign_key: :review_id,
+             dependent: :destroy
+
     validates :score, presence: true,
                       numericality: { only_integer: true, in: 0..100 }
 
