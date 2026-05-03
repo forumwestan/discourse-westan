@@ -1,4 +1,5 @@
 import { i18n } from "discourse-i18n";
+import ReviewItem from "../../components/westan-critic/review-item";
 
 <template>
 <section class="westan-critic__section">
@@ -6,10 +7,7 @@ import { i18n } from "discourse-i18n";
   {{#if @model.reviews.length}}
     <ul class="westan-review-list">
       {{#each @model.reviews as |review|}}
-        <li class="westan-review-item">
-          <div class="westan-score westan-score--user">{{review.score}}</div>
-          <p class="westan-review-item__body">{{review.body}}</p>
-        </li>
+        <ReviewItem @review={{review}} />
       {{/each}}
     </ul>
   {{else}}

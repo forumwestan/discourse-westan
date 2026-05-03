@@ -4,7 +4,7 @@ import AlbumCard from "../../components/westan-critic/album-card";
 <template>
 <section class="westan-critic__section">
   <h1 class="westan-title">{{i18n "westan.critic.nav.recent"}}</h1>
-  <div class="westan-grid">
+  <div class="westan-grid westan-grid--critic">
     {{#each @model.albums as |album|}}
       <AlbumCard @album={{album}} />
     {{/each}}
