@@ -8,8 +8,15 @@ import { LinkTo } from "@ember/routing";
   </header>
 
   {{#unless @model.hasLastfm}}
-    <div class="westan-empty">
-      {{i18n "westan.charts.no_lastfm"}}
+    <div class="westan-empty westan-charts-connect">
+      <p>{{i18n "westan.charts.no_lastfm"}}</p>
+      <a href={{@model.profileUrl}} class="westan-charts-connect__button">
+        {{#if @model.isLoggedIn}}
+          {{i18n "westan.charts.connect_lastfm"}}
+        {{else}}
+          {{i18n "westan.charts.sign_in_to_connect"}}
+        {{/if}}
+      </a>
     </div>
   {{else}}
     <section class="westan-charts__section">

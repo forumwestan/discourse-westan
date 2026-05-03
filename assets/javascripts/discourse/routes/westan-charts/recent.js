@@ -6,7 +6,15 @@ export default class WestanChartsRecentRoute extends DiscourseRoute {
     const lastfmUsername =
       this.currentUser?.westan_lastfm_username ||
       this.currentUser?.custom_fields?.lastfm_username;
-    if (!lastfmUsername) return { hasLastfm: false };
+    if (!lastfmUsername) {
+      return {
+        hasLastfm: false,
+        profileUrl: this.currentUser
+          ? `/u/${this.currentUser.username}/preferences/profile`
+          : "/login",
+        isLoggedIn: Boolean(this.currentUser),
+      };
+    }
     const res = await ajax(`/westan/lastfm/user.getrecenttracks`, {
       data: { user: lastfmUsername, limit: 50 },
     });

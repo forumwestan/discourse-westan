@@ -7,7 +7,11 @@ export default class WestanChartsIndexRoute extends DiscourseRoute {
     const lastfmUsername =
       user?.westan_lastfm_username || user?.custom_fields?.lastfm_username;
     if (!lastfmUsername) {
-      return { hasLastfm: false };
+      return {
+        hasLastfm: false,
+        profileUrl: user ? `/u/${user.username}/preferences/profile` : "/login",
+        isLoggedIn: Boolean(user),
+      };
     }
 
     const [artists, albums, tracks] = await Promise.all([

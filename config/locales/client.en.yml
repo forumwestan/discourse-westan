@@ -13,6 +13,8 @@ en:
         top_tracks: "Top Tracks"
         recent_tracks: "Recently Played"
         no_lastfm: "Connect your Last.fm account on your profile to see your charts."
+        connect_lastfm: "Connect Last.fm"
+        sign_in_to_connect: "Sign in to connect"
       critic:
         title: "Westan Critic"
         nav:
