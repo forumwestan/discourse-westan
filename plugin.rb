@@ -79,6 +79,13 @@ after_initialize do
     get    "/westan/deezer/search-album"     => "westan/deezer#search_album"
   end
 
+  Discourse::Application.routes.append do
+    get "/critic" => "list#latest"
+    get "/critic/*path" => "list#latest"
+    get "/charts" => "list#latest"
+    get "/charts/*path" => "list#latest"
+  end
+
   User.register_custom_field_type("lastfm_username", :text)
   register_editable_user_custom_field :lastfm_username
   DiscoursePluginRegistry.serialized_current_user_fields << "lastfm_username"
