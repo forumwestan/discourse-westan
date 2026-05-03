@@ -1,11 +1,11 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
-import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
 import { fn } from "@ember/helper";
 import { on } from "@ember/modifier";
 import { eq } from "truth-helpers";
+import { ajax } from "discourse/lib/ajax";
 
 const DEFAULT_CARDS = [
   {
@@ -20,17 +20,16 @@ const DEFAULT_CARDS = [
 ];
 
 export default class HeroSlider extends Component {
-  @service siteSettings;
-
   @tracked activeIndex = 0;
+  @tracked loadedCards = null;
+
+  constructor() {
+    super(...arguments);
+    window.setTimeout(() => this.loadCards(), 0);
+  }
 
   get cards() {
-    try {
-      const parsed = JSON.parse(this.siteSettings.westan_critic_hero_cards_json || "[]");
-      return Array.isArray(parsed) && parsed.length ? parsed : DEFAULT_CARDS;
-    } catch {
-      return DEFAULT_CARDS;
-    }
+    return this.loadedCards?.length ? this.loadedCards : DEFAULT_CARDS;
   }
 
   get activeCard() {
@@ -44,6 +43,15 @@ export default class HeroSlider extends Component {
   @action
   select(index) {
     this.activeIndex = index;
+  }
+
+  async loadCards() {
+    try {
+      const result = await ajax("/westan/critic/hero-cards");
+      this.loadedCards = Array.isArray(result.cards) ? result.cards : DEFAULT_CARDS;
+    } catch {
+      this.loadedCards = DEFAULT_CARDS;
+    }
   }
 
   <template>

@@ -38,6 +38,7 @@ after_initialize do
   require_relative "app/controllers/westan/critic_reviews_controller"
   require_relative "app/controllers/westan/lastfm_controller"
   require_relative "app/controllers/westan/deezer_controller"
+  require_relative "app/controllers/westan/admin_controller"
 
   Westan::Engine.routes.draw do
     # Critic
@@ -68,6 +69,7 @@ after_initialize do
     # app fallback route before the mounted engine gets a chance to answer.
     get    "/westan/critic/albums"           => "westan/critic_albums#index"
     get    "/westan/critic/albums/:slug"     => "westan/critic_albums#show"
+    get    "/westan/critic/hero-cards"       => "westan/admin#hero_cards"
     post   "/westan/critic/albums"           => "westan/critic_albums#create"
     patch  "/westan/critic/albums/:id"       => "westan/critic_albums#update"
     delete "/westan/critic/albums/:id"       => "westan/critic_albums#destroy"
@@ -85,6 +87,7 @@ after_initialize do
     post   "/westan/lastfm/username"         => "westan/lastfm#update_username"
     get    "/westan/lastfm/*method"          => "westan/lastfm#proxy", format: false
     get    "/westan/deezer/search-album"     => "westan/deezer#search_album"
+    patch  "/westan/admin/critic-hero-cards" => "westan/admin#update_hero_cards"
   end
 
   Discourse::Application.routes.append do
@@ -92,6 +95,8 @@ after_initialize do
     get "/critic/*path" => "list#latest"
     get "/charts" => "list#latest"
     get "/charts/*path" => "list#latest"
+    get "/admin/plugins/westan" => "list#latest"
+    get "/admin/plugins/westan/*path" => "list#latest"
   end
 
   User.register_custom_field_type("lastfm_username", :text)
