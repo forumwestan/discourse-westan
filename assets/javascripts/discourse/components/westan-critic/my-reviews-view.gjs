@@ -1,4 +1,5 @@
 import Component from "@glimmer/component";
+import { fn } from "@ember/helper";
 import { action } from "@ember/object";
 import { on } from "@ember/modifier";
 import { tracked } from "@glimmer/tracking";
