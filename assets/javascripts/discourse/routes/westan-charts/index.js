@@ -9,7 +9,6 @@ export default class WestanChartsIndexRoute extends DiscourseRoute {
     if (!lastfmUsername) {
       return {
         hasLastfm: false,
-        profileUrl: user ? `/u/${user.username}/preferences/profile` : "/login",
         isLoggedIn: Boolean(user),
       };
     }

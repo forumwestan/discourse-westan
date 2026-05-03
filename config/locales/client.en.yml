@@ -14,6 +14,10 @@ en:
         recent_tracks: "Recently Played"
         no_lastfm: "Connect your Last.fm account on your profile to see your charts."
         connect_lastfm: "Connect Last.fm"
+        connect_lastfm_description: "Enter your Last.fm username to enable Westan Charts."
+        lastfm_username: "Last.fm username"
+        lastfm_username_placeholder: "Your Last.fm username"
+        save_lastfm: "Save Last.fm"
         sign_in_to_connect: "Sign in to connect"
       critic:
         title: "Westan Critic"

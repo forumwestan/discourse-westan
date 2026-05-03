@@ -9,9 +9,6 @@ export default class WestanChartsRecentRoute extends DiscourseRoute {
     if (!lastfmUsername) {
       return {
         hasLastfm: false,
-        profileUrl: this.currentUser
-          ? `/u/${this.currentUser.username}/preferences/profile`
-          : "/login",
         isLoggedIn: Boolean(this.currentUser),
       };
     }

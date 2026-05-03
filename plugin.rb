@@ -55,6 +55,8 @@ after_initialize do
     post   "/critic/reviews/:id/vote"        => "critic_reviews#vote"
 
     # Proxies to external APIs
+    patch  "/lastfm/username"                => "lastfm#update_username"
+    post   "/lastfm/username"                => "lastfm#update_username"
     get    "/lastfm/:method"                 => "lastfm#proxy"
     get    "/deezer/search-album"            => "deezer#search_album"
   end
@@ -76,6 +78,8 @@ after_initialize do
     post   "/westan/critic/reviews/:id/vote" => "westan/critic_reviews#vote"
 
     get    "/westan/lastfm/:method"          => "westan/lastfm#proxy"
+    patch  "/westan/lastfm/username"         => "westan/lastfm#update_username"
+    post   "/westan/lastfm/username"         => "westan/lastfm#update_username"
     get    "/westan/deezer/search-album"     => "westan/deezer#search_album"
   end
 

@@ -1,4 +1,5 @@
 import { i18n } from "discourse-i18n";
+import { LinkTo } from "@ember/routing";
 
 <template>
 <div class="westan-charts">
@@ -9,13 +10,15 @@ import { i18n } from "discourse-i18n";
   {{#unless @model.hasLastfm}}
     <div class="westan-empty westan-charts-connect">
       <p>{{i18n "westan.charts.no_lastfm"}}</p>
-      <a href={{@model.profileUrl}} class="westan-charts-connect__button">
-        {{#if @model.isLoggedIn}}
+      {{#if @model.isLoggedIn}}
+        <LinkTo @route="westan-charts.connect" class="westan-charts-connect__button">
           {{i18n "westan.charts.connect_lastfm"}}
-        {{else}}
+        </LinkTo>
+      {{else}}
+        <a href="/login" class="westan-charts-connect__button">
           {{i18n "westan.charts.sign_in_to_connect"}}
-        {{/if}}
-      </a>
+        </a>
+      {{/if}}
     </div>
   {{else}}
     <ol class="westan-list">

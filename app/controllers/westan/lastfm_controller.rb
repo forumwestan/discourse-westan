@@ -6,6 +6,7 @@ require "json"
 module Westan
   class LastfmController < ::ApplicationController
     requires_plugin Westan::PLUGIN_NAME
+    before_action :ensure_logged_in, only: [:update_username]
 
     ALLOWED_METHODS = %w[
       user.gettopartists
@@ -42,6 +43,21 @@ module Westan
       response = Net::HTTP.get_response(uri)
 
       render json: response.body, status: response.code.to_i
+    end
+
+    def update_username
+      username = params[:username].to_s.strip
+      if username.blank?
+        return render json: { error: I18n.t("westan.charts.lastfm_username_required") }, status: 422
+      end
+
+      current_user.custom_fields["lastfm_username"] = username
+      current_user.save_custom_fields
+
+      render json: {
+        success: true,
+        lastfm_username: username
+      }
     end
   end
 end
