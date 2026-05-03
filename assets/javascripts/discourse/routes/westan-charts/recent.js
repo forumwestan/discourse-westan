@@ -1,6 +1,14 @@
 import DiscourseRoute from "discourse/routes/discourse";
 import { ajax } from "discourse/lib/ajax";
 
+async function lastfmAjax(path, data) {
+  try {
+    return await ajax(path, { data });
+  } catch (error) {
+    return { westan_error: error };
+  }
+}
+
 export default class WestanChartsRecentRoute extends DiscourseRoute {
   async model() {
     const lastfmUsername =
@@ -12,20 +20,62 @@ export default class WestanChartsRecentRoute extends DiscourseRoute {
         isLoggedIn: Boolean(this.currentUser),
       };
     }
-    let res = {};
-    let lastfmError = null;
-    try {
-      res = await ajax(`/westan/lastfm/user.gettopartists`, {
-        data: { user: lastfmUsername, period: "7day", limit: 50 },
-      });
-    } catch (error) {
-      lastfmError = error;
-    }
+
+    const [weeklyArtists, monthlyArtists, weeklyAlbums, monthlyAlbums, weeklyTracks, monthlyTracks] =
+      await Promise.all([
+        lastfmAjax(`/westan/lastfm/user.gettopartists`, {
+          user: lastfmUsername,
+          period: "7day",
+          limit: 50,
+        }),
+        lastfmAjax(`/westan/lastfm/user.gettopartists`, {
+          user: lastfmUsername,
+          period: "1month",
+          limit: 50,
+        }),
+        lastfmAjax(`/westan/lastfm/user.gettopalbums`, {
+          user: lastfmUsername,
+          period: "7day",
+          limit: 50,
+        }),
+        lastfmAjax(`/westan/lastfm/user.gettopalbums`, {
+          user: lastfmUsername,
+          period: "1month",
+          limit: 50,
+        }),
+        lastfmAjax(`/westan/lastfm/user.gettoptracks`, {
+          user: lastfmUsername,
+          period: "7day",
+          limit: 50,
+        }),
+        lastfmAjax(`/westan/lastfm/user.gettoptracks`, {
+          user: lastfmUsername,
+          period: "1month",
+          limit: 50,
+        }),
+      ]);
 
     return {
       hasLastfm: true,
-      artists: res?.topartists?.artist || [],
-      lastfmError,
+      charts: {
+        weekly: {
+          artists: weeklyArtists?.topartists?.artist || [],
+          albums: weeklyAlbums?.topalbums?.album || [],
+          tracks: weeklyTracks?.toptracks?.track || [],
+        },
+        monthly: {
+          artists: monthlyArtists?.topartists?.artist || [],
+          albums: monthlyAlbums?.topalbums?.album || [],
+          tracks: monthlyTracks?.toptracks?.track || [],
+        },
+      },
+      lastfmError:
+        weeklyArtists?.westan_error ||
+        monthlyArtists?.westan_error ||
+        weeklyAlbums?.westan_error ||
+        monthlyAlbums?.westan_error ||
+        weeklyTracks?.westan_error ||
+        monthlyTracks?.westan_error,
     };
   }
 }

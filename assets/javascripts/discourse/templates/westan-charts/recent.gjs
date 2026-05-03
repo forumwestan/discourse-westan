@@ -31,7 +31,7 @@ import RankingList from "../../components/westan-charts/ranking-list";
       </div>
     {{/if}}
 
-    <RankingList @items={{@model.artists}} />
+    <RankingList @charts={{@model.charts}} />
   {{/unless}}
 </div>
 </template>
