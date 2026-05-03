@@ -1,3 +1,7 @@
+import { i18n } from "discourse-i18n";
+import { LinkTo } from "@ember/routing";
+
+<template>
 <div class="westan-shell westan-critic-shell">
   <nav class="westan-critic__nav">
     <LinkTo @route="westan-critic.index" class="westan-critic__nav-link">{{i18n "westan.critic.nav.home"}}</LinkTo>
@@ -10,3 +14,4 @@
   </nav>
   {{outlet}}
 </div>
+</template>

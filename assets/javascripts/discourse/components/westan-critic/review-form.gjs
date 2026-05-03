@@ -1,6 +1,7 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
+import { service } from "@ember/service";
 import { ajax } from "discourse/lib/ajax";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 import DButton from "discourse/components/d-button";
@@ -9,6 +10,8 @@ import { i18n } from "discourse-i18n";
 import { on } from "@ember/modifier";
 
 export default class ReviewForm extends Component {
+  @service router;
+
   @tracked score = this.args.existing?.score ?? 70;
   @tracked body = this.args.existing?.body ?? "";
   @tracked saving = false;
@@ -43,7 +46,15 @@ export default class ReviewForm extends Component {
         await ajax(`/westan/critic/reviews`, { type: "POST", data: payload });
       }
 
-      this.args.onSaved?.();
+      if (this.args.onSaved) {
+        this.args.onSaved();
+      } else {
+        const routeName =
+          this.args.album.type === "single"
+            ? "westan-critic.single"
+            : "westan-critic.album";
+        this.router.transitionTo(routeName, this.args.album.slug);
+      }
     } catch (e) {
       popupAjaxError(e);
     } finally {

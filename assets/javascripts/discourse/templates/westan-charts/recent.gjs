@@ -1,3 +1,6 @@
+import { i18n } from "discourse-i18n";
+
+<template>
 <div class="westan-charts">
   <header class="westan-charts__header">
     <h1 class="westan-title">{{i18n "westan.charts.recent_tracks"}}</h1>
@@ -16,3 +19,4 @@
     </ol>
   {{/unless}}
 </div>
+</template>

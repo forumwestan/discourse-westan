@@ -1,8 +1,11 @@
+import ReviewForm from "../../components/westan-critic/review-form";
+
+<template>
 <section class="westan-critic__section">
   <h1 class="westan-title">{{@model.album.title}} — {{@model.album.artist}}</h1>
-  <WestanCritic::ReviewForm
+  <ReviewForm
     @album={{@model.album}}
     @existing={{@model.existing}}
-    @onSaved={{route-action "goBack"}}
   />
 </section>
+</template>

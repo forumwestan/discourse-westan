@@ -1,3 +1,6 @@
+import { i18n } from "discourse-i18n";
+
+<template>
 <div class="westan-charts">
   <header class="westan-charts__header">
     <h1 class="westan-title">{{@model.artistName}}</h1>
@@ -28,3 +31,4 @@
     </ol>
   </section>
 </div>
+</template>

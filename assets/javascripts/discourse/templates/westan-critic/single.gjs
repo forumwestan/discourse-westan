@@ -1,3 +1,8 @@
+import { i18n } from "discourse-i18n";
+import { LinkTo } from "@ember/routing";
+import { or } from "truth-helpers";
+
+<template>
 <article class="westan-album-page">
   <header class="westan-album-page__hero">
     {{#if @model.album.cover_url}}
@@ -47,3 +52,4 @@
     {{/if}}
   </section>
 </article>
+</template>

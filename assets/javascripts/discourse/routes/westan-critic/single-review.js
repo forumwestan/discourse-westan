@@ -1,2 +1,2 @@
-import WestanCriticAlbumReviewRoute from "./westan-critic-album-review";
+import WestanCriticAlbumReviewRoute from "./album-review";
 export default class WestanCriticSingleReviewRoute extends WestanCriticAlbumReviewRoute {}
