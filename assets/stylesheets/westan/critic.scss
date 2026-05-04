@@ -46,11 +46,19 @@
       white-space: nowrap;
       transition: border-color 0.15s, background-color 0.15s, color 0.15s;
 
+      &:visited {
+        color: #111827;
+      }
+
       &.active,
       &:hover {
         border-color: #000;
         background: #000;
         color: #fff;
+
+        &:visited {
+          color: #fff;
+        }
       }
     }
   }
@@ -107,6 +115,10 @@
     font-weight: 950;
     text-decoration: none;
     backdrop-filter: blur(8px);
+
+    &:visited {
+      color: #fff;
+    }
 
     &:hover {
       background: rgba(255, 255, 255, 0.3);
@@ -180,6 +192,10 @@
   font-size: 0.86rem;
   font-weight: 950;
   text-decoration: none;
+
+  &:visited {
+    color: #fff;
+  }
 
   &:hover {
     color: #fff;
@@ -512,9 +528,17 @@
     text-decoration: none;
     transition: background-color 0.15s, color 0.15s;
 
+    &:visited {
+      color: #111827;
+    }
+
     &:hover {
       background: #111827;
       color: #fff;
+
+      &:visited {
+        color: #fff;
+      }
     }
   }
 
@@ -1440,9 +1464,9 @@ body[class*="dark"] .westan-critic-shell {
 .westan-critic-shell {
   --critic-text: var(--primary);
   --critic-muted: var(--primary-medium);
-  --critic-surface-adaptive: color-mix(in srgb, var(--secondary) 92%, var(--primary) 8%);
-  --critic-surface-strong-adaptive: color-mix(in srgb, var(--secondary) 86%, var(--primary) 14%);
-  --critic-line-adaptive: color-mix(in srgb, var(--primary) 18%, transparent);
+  --critic-surface-adaptive: color-mix(in srgb, var(--secondary) 96%, var(--primary) 4%);
+  --critic-surface-strong-adaptive: color-mix(in srgb, var(--secondary) 98%, var(--primary) 2%);
+  --critic-line-adaptive: color-mix(in srgb, var(--primary) 12%, transparent);
 
   color: var(--primary);
 
@@ -1476,6 +1500,7 @@ body[class*="dark"] .westan-critic-shell {
     border: 1px solid var(--critic-line-adaptive);
     background: var(--critic-surface-adaptive);
     color: var(--primary);
+    box-shadow: 0 10px 24px color-mix(in srgb, var(--primary) 7%, transparent);
   }
 
   .westan-album-card .westan-card__title,
@@ -1517,6 +1542,10 @@ body[class*="dark"] .westan-critic-shell {
     &:hover {
       background: #000;
       color: #fff;
+
+      &:visited {
+        color: #fff;
+      }
     }
   }
 
@@ -1530,7 +1559,7 @@ body[class*="dark"] .westan-critic-shell {
   }
 
   .westan-critic__section .westan-empty {
-    background: color-mix(in srgb, #8b5cf6 10%, var(--secondary));
+    background: color-mix(in srgb, #8b5cf6 7%, var(--secondary));
     color: var(--primary-medium);
   }
 }
