@@ -1185,6 +1185,9 @@
 }
 
 html.dark .westan-critic-shell,
+html[class*="dark"] .westan-critic-shell,
+html[data-color-scheme="dark"] .westan-critic-shell,
+html[data-theme*="dark"] .westan-critic-shell,
 body.dark .westan-critic-shell,
 body[class*="dark"] .westan-critic-shell {
   --critic-text: #f8fafc;
@@ -1194,9 +1197,13 @@ body[class*="dark"] .westan-critic-shell {
   color: #f8fafc;
 
   .westan-title,
+  .westan-album-page .westan-title,
+  .westan-album-page__artist,
   .westan-critic__section h2,
+  .westan-critic__section-header h2,
   .westan-album-page__reviews-header h2,
   .westan-album-page__press-title,
+  .westan-album-page__review-title,
   .westan-my-reviews .westan-title {
     color: #f8fafc;
   }
@@ -1220,7 +1227,6 @@ body[class*="dark"] .westan-critic-shell {
 
   .westan-critic__section-header a,
   .westan-album-page__back,
-  .westan-album-page__artist,
   .westan-score-meter__label,
   .westan-empty,
   .westan-my-reviews__total {
@@ -1291,6 +1297,86 @@ body[class*="dark"] .westan-critic-shell {
 
   .westan-add-form__results li {
     border-bottom-color: rgba(255, 255, 255, 0.14);
+  }
+}
+
+.dark-scheme .westan-critic-shell,
+.discourse-dark-mode .westan-critic-shell,
+[data-color-scheme="dark"] .westan-critic-shell,
+[data-theme*="dark"] .westan-critic-shell {
+  --critic-text: #f8fafc;
+  --critic-muted: #a8b0bd;
+  --critic-line: rgba(255, 255, 255, 0.16);
+
+  color: #f8fafc;
+
+  .westan-title,
+  .westan-album-page .westan-title,
+  .westan-album-page__artist,
+  .westan-critic__section h2,
+  .westan-critic__section-header h2,
+  .westan-album-page__reviews-header h2,
+  .westan-album-page__press-title,
+  .westan-album-page__review-title,
+  .westan-my-reviews .westan-title {
+    color: #f8fafc;
+  }
+
+  .westan-critic__section-header a,
+  .westan-album-page__back,
+  .westan-score-meter__label,
+  .westan-empty,
+  .westan-my-reviews__total {
+    color: #a8b0bd;
+  }
+
+  .westan-critic__nav {
+    background: rgba(24, 24, 24, 0.94);
+  }
+
+  .westan-critic__nav-link {
+    border-color: rgba(255, 255, 255, 0.22);
+    background: #fff;
+    color: #111827;
+
+    &.active,
+    &:hover {
+      border-color: #000;
+      background: #000;
+      color: #fff;
+    }
+  }
+
+  .westan-album-card,
+  .westan-review-item,
+  .westan-review-form,
+  .westan-review-filter__menu,
+  .westan-my-review-row {
+    background: #fff;
+    color: #111827;
+  }
+
+  .westan-album-card .westan-card__title,
+  .westan-review-item__meta,
+  .westan-my-review-row__body strong,
+  .westan-add-form__title,
+  .westan-add-form__result-body strong {
+    color: #111827;
+  }
+
+  .westan-review-item__body,
+  .westan-add-form__result-body span,
+  .westan-add-form__meta small,
+  .westan-my-review-row__body > span {
+    color: #667085;
+  }
+
+  .westan-album-page__review-button,
+  .westan-album-page__favorite-button,
+  .westan-album-page__download-button {
+    border-color: rgba(255, 255, 255, 0.22);
+    background: #fff;
+    color: #9b5cf6;
   }
 }
 

@@ -1146,8 +1146,19 @@
 }
 
 html.dark .westan-charts-shell,
+html[class*="dark"] .westan-charts-shell,
+html[data-color-scheme="dark"] .westan-charts-shell,
+html[data-theme*="dark"] .westan-charts-shell,
 body.dark .westan-charts-shell,
 body[class*="dark"] .westan-charts-shell {
+  --westan-dark-page: #181818;
+  --westan-dark-panel: #000;
+  --westan-dark-soft: #1f1f22;
+  --westan-dark-text: #f8fafc;
+  --westan-dark-muted: #a8b0bd;
+
+  color: var(--westan-dark-text);
+
   .westan-charts-nav__pill {
     border-color: rgba(255, 255, 255, 0.24);
     background: #fff;
@@ -1171,7 +1182,25 @@ body[class*="dark"] .westan-charts-shell {
   .westan-charts-chart-header h1,
   .westan-charts-streaming__hero h1,
   .westan-streaming-header h1 {
-    color: #f8fafc;
+    color: var(--westan-dark-text);
+  }
+
+  .westan-streaming-header p,
+  .westan-charts-chart-header p,
+  .westan-charts-feature span,
+  .westan-charts-feature p,
+  .westan-charts-ranking-row span {
+    color: var(--westan-dark-muted);
+  }
+
+  .westan-charts-now,
+  .westan-charts-spending {
+    background: var(--westan-dark-panel);
+    color: #fff;
+  }
+
+  .westan-charts-now__row {
+    background: var(--westan-dark-soft);
   }
 
   .westan-charts-board-row b,
@@ -1190,11 +1219,61 @@ body[class*="dark"] .westan-charts-shell {
 
   .westan-charts-ranking-row b,
   .westan-charts-ranking-row strong {
-    color: #f8fafc;
+    color: var(--westan-dark-text);
+  }
+
+  .westan-charts-rankings__toggle,
+  .westan-charts-periods {
+    border-color: #000;
+    background: #000;
+  }
+
+  .westan-streaming-card p,
+  .westan-streaming-card__totals span {
+    color: #4b5563;
   }
 
   .westan-lastfm-form {
     background: #fff;
+    color: #111827;
+  }
+}
+
+.dark-scheme .westan-charts-shell,
+.discourse-dark-mode .westan-charts-shell,
+[data-color-scheme="dark"] .westan-charts-shell,
+[data-theme*="dark"] .westan-charts-shell {
+  color: #f8fafc;
+
+  .westan-charts-rankings h2,
+  .westan-charts-chart-header h1,
+  .westan-charts-streaming__hero h1,
+  .westan-streaming-header h1,
+  .westan-charts-ranking-row b,
+  .westan-charts-ranking-row strong {
+    color: #f8fafc;
+  }
+
+  .westan-streaming-header p,
+  .westan-charts-chart-header p,
+  .westan-charts-ranking-row span {
+    color: #a8b0bd;
+  }
+
+  .westan-charts-feature,
+  .westan-charts-board-row,
+  .westan-streaming-card,
+  .westan-charts-board-details,
+  .westan-lastfm-form {
+    background: #fff;
+    color: #111827;
+  }
+
+  .westan-charts-board-row b,
+  .westan-charts-board-row strong,
+  .westan-charts-board-row__main > span,
+  .westan-streaming-card h2,
+  .westan-streaming-card__totals strong {
     color: #111827;
   }
 }
