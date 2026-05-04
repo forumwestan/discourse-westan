@@ -1435,11 +1435,14 @@ body[class*="dark"] .westan-critic-shell {
 }
 
 // Discourse dark palettes may be applied only through CSS variables, without a
-// body/html dark class. Keep outer plugin text bound to the active palette and
-// explicitly reset the light cards/forms to dark text.
+// body/html dark class. Follow the active palette so all plugin pages inherit
+// the original app's dark surfaces instead of leaving white blocks behind.
 .westan-critic-shell {
   --critic-text: var(--primary);
   --critic-muted: var(--primary-medium);
+  --critic-surface-adaptive: color-mix(in srgb, var(--secondary) 92%, var(--primary) 8%);
+  --critic-surface-strong-adaptive: color-mix(in srgb, var(--secondary) 86%, var(--primary) 14%);
+  --critic-line-adaptive: color-mix(in srgb, var(--primary) 18%, transparent);
 
   color: var(--primary);
 
@@ -1470,8 +1473,9 @@ body[class*="dark"] .westan-critic-shell {
   .westan-my-review-row,
   .westan-add-form__result,
   .westan-lastfm-form {
-    background: #fff;
-    color: #111827;
+    border: 1px solid var(--critic-line-adaptive);
+    background: var(--critic-surface-adaptive);
+    color: var(--primary);
   }
 
   .westan-album-card .westan-card__title,
@@ -1480,7 +1484,7 @@ body[class*="dark"] .westan-critic-shell {
   .westan-add-form__title,
   .westan-add-form__result-body strong,
   .westan-review-form label {
-    color: #111827;
+    color: var(--primary);
   }
 
   .westan-review-item__body,
@@ -1490,14 +1494,14 @@ body[class*="dark"] .westan-critic-shell {
   .westan-review-form input[type="number"],
   .westan-review-form textarea,
   .westan-add-form__search input[type="search"] {
-    color: #667085;
+    color: var(--primary-medium);
   }
 
   .westan-review-form input[type="number"],
   .westan-review-form textarea,
   .westan-add-form__search input[type="search"] {
-    background: #fff;
-    border-color: #e5e7eb;
+    background: var(--critic-surface-strong-adaptive);
+    border-color: var(--critic-line-adaptive);
   }
 
   .westan-critic__nav {
@@ -1505,13 +1509,28 @@ body[class*="dark"] .westan-critic-shell {
   }
 
   .westan-critic__nav-link {
-    background: #fff;
-    color: #111827;
+    border-color: var(--critic-line-adaptive);
+    background: var(--critic-surface-adaptive);
+    color: var(--primary);
 
     &.active,
     &:hover {
       background: #000;
       color: #fff;
     }
+  }
+
+  .westan-album-page__review-button,
+  .westan-album-page__favorite-button,
+  .westan-album-page__download-button,
+  .westan-review-filter__button {
+    border-color: var(--critic-line-adaptive);
+    background: var(--critic-surface-adaptive);
+    color: var(--primary);
+  }
+
+  .westan-critic__section .westan-empty {
+    background: color-mix(in srgb, #8b5cf6 10%, var(--secondary));
+    color: var(--primary-medium);
   }
 }

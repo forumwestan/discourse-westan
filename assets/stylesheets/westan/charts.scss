@@ -1393,10 +1393,15 @@ body[class*="dark"] .westan-charts-shell {
   text-align: center;
 }
 
-// Discourse does not always expose a dark-mode class; in those cases it only
-// swaps palette variables. These adaptive overrides follow the active palette
-// for page text while preserving the white cards from the original app.
+// Discourse often switches dark palettes only through CSS variables. These
+// adaptive overrides use the active palette so cards become dark in dark mode
+// and stay light in light mode.
 .westan-charts-shell {
+  --westan-surface: color-mix(in srgb, var(--secondary) 92%, var(--primary) 8%);
+  --westan-surface-strong: color-mix(in srgb, var(--secondary) 86%, var(--primary) 14%);
+  --westan-line-adaptive: color-mix(in srgb, var(--primary) 18%, transparent);
+  --westan-muted-adaptive: var(--primary-medium);
+
   color: var(--primary);
 
   .westan-title,
@@ -1428,8 +1433,9 @@ body[class*="dark"] .westan-charts-shell {
   .westan-streaming-card,
   .westan-lastfm-form,
   .westan-empty {
-    background: #fff;
-    color: #111827;
+    border: 1px solid var(--westan-line-adaptive);
+    background: var(--westan-surface);
+    color: var(--primary);
   }
 
   .westan-charts-feature strong,
@@ -1439,7 +1445,7 @@ body[class*="dark"] .westan-charts-shell {
   .westan-charts-board-details strong,
   .westan-streaming-card h2,
   .westan-streaming-card__totals strong {
-    color: #111827;
+    color: var(--primary);
   }
 
   .westan-charts-feature span,
@@ -1447,7 +1453,7 @@ body[class*="dark"] .westan-charts-shell {
   .westan-charts-board-details span,
   .westan-streaming-card p,
   .westan-streaming-card__totals span {
-    color: #667085;
+    color: var(--westan-muted-adaptive);
   }
 
   .westan-charts-now,
@@ -1464,5 +1470,57 @@ body[class*="dark"] .westan-charts-shell {
 
   .westan-charts-now__row {
     background: #1f1f22;
+  }
+
+  .westan-charts-nav__pill {
+    border-color: var(--westan-line-adaptive);
+    background: var(--westan-surface);
+    color: var(--primary);
+
+    &.is-active,
+    &:hover {
+      border-color: #000;
+      background: #000;
+      color: #fff;
+    }
+  }
+
+  .westan-charts-periods {
+    border-color: #000;
+    background: #000;
+
+    button {
+      color: #fff;
+
+      &.is-active {
+        background: #c77cff;
+        color: #000;
+      }
+    }
+  }
+
+  .westan-charts-actions button,
+  .westan-charts-menu__popover {
+    border: 1px solid var(--westan-line-adaptive);
+    background: #000;
+    color: #fff;
+  }
+
+  .westan-streaming-months {
+    border-bottom-color: var(--primary);
+
+    span {
+      color: var(--primary);
+
+      &:nth-child(-n + 5) {
+        color: #c77cff;
+      }
+    }
+  }
+
+  .westan-streaming-card__actions button {
+    border-color: var(--westan-line-adaptive);
+    background: var(--westan-surface-strong);
+    color: var(--primary);
   }
 }
