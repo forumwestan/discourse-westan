@@ -1392,3 +1392,77 @@ body[class*="dark"] .westan-charts-shell {
   font-weight: 900;
   text-align: center;
 }
+
+// Discourse does not always expose a dark-mode class; in those cases it only
+// swaps palette variables. These adaptive overrides follow the active palette
+// for page text while preserving the white cards from the original app.
+.westan-charts-shell {
+  color: var(--primary);
+
+  .westan-title,
+  .westan-charts-rankings h2,
+  .westan-charts-chart-header h1,
+  .westan-charts-streaming__hero h1,
+  .westan-streaming-header h1 {
+    color: var(--primary);
+  }
+
+  .westan-streaming-header p,
+  .westan-charts-chart-header p,
+  .westan-charts-ranking-row span,
+  .westan-charts-feature span,
+  .westan-charts-feature p,
+  .westan-charts-connect-page__back,
+  .westan-lastfm-divider {
+    color: var(--primary-medium);
+  }
+
+  .westan-charts-ranking-row b,
+  .westan-charts-ranking-row strong {
+    color: var(--primary);
+  }
+
+  .westan-charts-feature,
+  .westan-charts-board-row,
+  .westan-charts-board-details,
+  .westan-streaming-card,
+  .westan-lastfm-form,
+  .westan-empty {
+    background: #fff;
+    color: #111827;
+  }
+
+  .westan-charts-feature strong,
+  .westan-charts-board-row b,
+  .westan-charts-board-row strong,
+  .westan-charts-board-row__main > span,
+  .westan-charts-board-details strong,
+  .westan-streaming-card h2,
+  .westan-streaming-card__totals strong {
+    color: #111827;
+  }
+
+  .westan-charts-feature span,
+  .westan-charts-feature p,
+  .westan-charts-board-details span,
+  .westan-streaming-card p,
+  .westan-streaming-card__totals span {
+    color: #667085;
+  }
+
+  .westan-charts-now,
+  .westan-charts-spending {
+    background: #000;
+    color: #fff;
+  }
+
+  .westan-charts-now h2,
+  .westan-charts-spending h2,
+  .westan-charts-now strong {
+    color: #fff;
+  }
+
+  .westan-charts-now__row {
+    background: #1f1f22;
+  }
+}

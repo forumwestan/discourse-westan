@@ -1433,3 +1433,85 @@ body[class*="dark"] .westan-critic-shell {
     grid-template-columns: 1fr;
   }
 }
+
+// Discourse dark palettes may be applied only through CSS variables, without a
+// body/html dark class. Keep outer plugin text bound to the active palette and
+// explicitly reset the light cards/forms to dark text.
+.westan-critic-shell {
+  --critic-text: var(--primary);
+  --critic-muted: var(--primary-medium);
+
+  color: var(--primary);
+
+  .westan-title,
+  .westan-album-page .westan-title,
+  .westan-album-page__artist,
+  .westan-critic__section h2,
+  .westan-critic__section-header h2,
+  .westan-album-page__reviews-header h2,
+  .westan-album-page__press-title,
+  .westan-album-page__review-title,
+  .westan-my-reviews .westan-title {
+    color: var(--primary);
+  }
+
+  .westan-critic__section-header a,
+  .westan-album-page__back,
+  .westan-score-meter__label,
+  .westan-my-reviews__total,
+  .westan-empty {
+    color: var(--primary-medium);
+  }
+
+  .westan-album-card,
+  .westan-review-item,
+  .westan-review-form,
+  .westan-review-filter__menu,
+  .westan-my-review-row,
+  .westan-add-form__result,
+  .westan-lastfm-form {
+    background: #fff;
+    color: #111827;
+  }
+
+  .westan-album-card .westan-card__title,
+  .westan-review-item__meta,
+  .westan-my-review-row__body strong,
+  .westan-add-form__title,
+  .westan-add-form__result-body strong,
+  .westan-review-form label {
+    color: #111827;
+  }
+
+  .westan-review-item__body,
+  .westan-add-form__result-body span,
+  .westan-add-form__meta small,
+  .westan-my-review-row__body > span,
+  .westan-review-form input[type="number"],
+  .westan-review-form textarea,
+  .westan-add-form__search input[type="search"] {
+    color: #667085;
+  }
+
+  .westan-review-form input[type="number"],
+  .westan-review-form textarea,
+  .westan-add-form__search input[type="search"] {
+    background: #fff;
+    border-color: #e5e7eb;
+  }
+
+  .westan-critic__nav {
+    background: color-mix(in srgb, var(--secondary) 92%, transparent);
+  }
+
+  .westan-critic__nav-link {
+    background: #fff;
+    color: #111827;
+
+    &.active,
+    &:hover {
+      background: #000;
+      color: #fff;
+    }
+  }
+}
