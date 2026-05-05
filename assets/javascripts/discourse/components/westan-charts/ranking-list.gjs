@@ -58,6 +58,16 @@ export default class WestanChartsRankingList extends Component {
     return this.args.charts?.[this.period]?.[this.kind] || [];
   }
 
+  get albumItems() {
+    return this.args.charts?.[this.period]?.albums || [];
+  }
+
+  fallbackImageFor(item, index) {
+    const artist = String(this.kind === "artists" ? item?.name : artistName(item)).toLowerCase();
+    const matchingAlbum = this.albumItems.find((album) => artistName(album).toLowerCase() === artist);
+    return imageFor(matchingAlbum) || imageFor(this.albumItems[index]) || imageFor(this.albumItems[0]);
+  }
+
   get hiddenKeys() {
     return this.hiddenByKind[this.kind] || [];
   }
@@ -84,7 +94,7 @@ export default class WestanChartsRankingList extends Component {
           key: keyFor(item, this.kind),
           name: item.name,
           subtitle: this.kind === "artists" ? this.activeMenu.singular : artistName(item),
-          image: imageFor(item),
+          image: imageFor(item) || this.fallbackImageFor(item, index),
           streams: Number(item.playcount || 0).toLocaleString("pt-BR"),
           movement,
           movementClass: movement.startsWith("↑") ? "is-positive" : "",

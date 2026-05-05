@@ -1,6 +1,31 @@
 .westan-charts {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+
   &__header { margin-bottom: 24px; }
   &__section { margin-bottom: 40px; }
+
+  .westan-title,
+  h1,
+  h2,
+  h3,
+  strong,
+  b,
+  .westan-charts-nav__pill,
+  .westan-charts-feature__link,
+  .westan-charts-board-row__badges,
+  .westan-charts-rankings__toggle,
+  .westan-charts-ranking-row em {
+    font-family: var(--westan-font-display);
+  }
+
+  p,
+  span,
+  small,
+  em,
+  input,
+  button {
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  }
 
   h2 {
     font-family: var(--westan-font-display);
@@ -104,6 +129,7 @@
     padding: 24px;
     border-radius: 28px;
     background-color: #12366e;
+    background-image: linear-gradient(135deg, #1f2937, #9ca3af);
     background-position: center;
     background-size: cover;
     box-shadow: 0 20px 38px rgba(17, 24, 39, 0.12);
@@ -119,6 +145,7 @@
     }
 
     h1 {
+      font-family: var(--westan-font-display);
       margin: 8px 0 6px;
       color: #fff;
       font-size: clamp(2.4rem, 5vw, 4.5rem);
@@ -150,11 +177,19 @@
   border-radius: 24px;
   background: #f0f0f1;
 
-  img {
+  img,
+  &__placeholder {
     width: 76px;
     height: 76px;
     border-radius: 18px;
     object-fit: cover;
+  }
+
+  &__placeholder {
+    display: block;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.35), transparent),
+      #e5e7eb;
   }
 
   span {
@@ -184,6 +219,21 @@
     color: #667085;
     font-size: 1rem;
     font-weight: 900;
+  }
+
+  &__link {
+    display: inline-flex;
+    margin-top: 12px;
+    color: #000;
+    font-size: 0.72rem;
+    font-weight: 950;
+    letter-spacing: 0.16em;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+      color: #8b5cf6;
+    }
   }
 }
 
@@ -738,6 +788,161 @@
   }
 }
 
+.westan-charts-artwork-placeholder {
+  display: block;
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.35), transparent),
+    #e5e7eb;
+}
+
+.westan-charts-artist-page {
+  .westan-charts-nav {
+    margin-bottom: 16px;
+  }
+}
+
+.westan-charts-artist-hero {
+  position: relative;
+  display: flex;
+  min-height: 530px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  overflow: hidden;
+  padding: 32px;
+  border-radius: 28px;
+  background-color: #1f2937;
+  background-image: linear-gradient(135deg, #1f2937, #9ca3af);
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 24px 48px rgba(17, 24, 39, 0.13);
+  color: #fff;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.22), transparent 55%);
+    pointer-events: none;
+  }
+}
+
+.westan-charts-artist-hero__main,
+.westan-charts-artist-hero__card {
+  position: relative;
+  z-index: 1;
+}
+
+.westan-charts-artist-hero__main {
+  span,
+  p {
+    font-weight: 950;
+  }
+
+  span {
+    font-size: 0.95rem;
+  }
+
+  h1 {
+    margin: 8px 0 8px;
+    color: #fff;
+    font-family: var(--westan-font-display);
+    font-size: clamp(3.3rem, 7vw, 5.6rem);
+    font-weight: 950;
+    letter-spacing: 0;
+    line-height: 0.88;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+}
+
+.westan-charts-artist-hero__card {
+  width: min(340px, 38%);
+  padding: 24px;
+  border-radius: 26px;
+  background: #000;
+  color: #fff;
+
+  > span {
+    display: block;
+    margin-bottom: 14px;
+    color: #a8b0bd;
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
+
+  > div {
+    display: grid;
+    grid-template-columns: 86px minmax(0, 1fr);
+    align-items: center;
+    gap: 16px;
+  }
+
+  img,
+  .westan-charts-artwork-placeholder {
+    width: 86px;
+    height: 86px;
+    border-radius: 16px;
+  }
+
+  strong,
+  p {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  strong {
+    color: #fff;
+    font-family: var(--westan-font-display);
+    font-size: 1.85rem;
+    font-weight: 950;
+    line-height: 0.95;
+  }
+
+  p {
+    margin: 4px 0 10px;
+    color: #e5e7eb;
+    font-weight: 950;
+  }
+
+  em {
+    display: inline-flex;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: #8b5cf6;
+    color: #fff;
+    font-size: 0.68rem;
+    font-style: normal;
+    font-weight: 950;
+    text-transform: uppercase;
+  }
+}
+
+.westan-charts-artist-rankings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 32px;
+
+  h2 {
+    margin: 0 0 10px;
+    color: #000;
+    font-family: var(--westan-font-display);
+    font-size: clamp(2.4rem, 4vw, 3.4rem);
+    font-weight: 950;
+    letter-spacing: 0;
+    line-height: 0.95;
+  }
+}
+
 .westan-charts-streaming {
   min-height: 640px;
 }
@@ -1058,12 +1263,24 @@
 @media (max-width: 900px) {
   .westan-charts-summary,
   .westan-charts-panels,
-  .westan-charts-rankings {
+  .westan-charts-rankings,
+  .westan-charts-artist-rankings {
     grid-template-columns: 1fr;
   }
 
   .westan-charts-summary__hero {
     min-height: 300px;
+  }
+
+  .westan-charts-artist-hero {
+    min-height: 420px;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .westan-charts-artist-hero__card {
+    width: min(100%, 420px);
   }
 }
 
@@ -1083,6 +1300,30 @@
     min-height: 250px;
     padding: 20px;
     border-radius: 22px;
+  }
+
+  .westan-charts-artist-hero {
+    min-height: 360px;
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .westan-charts-artist-hero__card {
+    padding: 18px;
+
+    > div {
+      grid-template-columns: 66px minmax(0, 1fr);
+    }
+
+    img,
+    .westan-charts-artwork-placeholder {
+      width: 66px;
+      height: 66px;
+    }
+
+    strong {
+      font-size: 1.35rem;
+    }
   }
 
   .westan-charts-feature,
@@ -1179,6 +1420,7 @@ body[class*="dark"] .westan-charts-shell {
   }
 
   .westan-charts-rankings h2,
+  .westan-charts-artist-rankings h2,
   .westan-charts-chart-header h1,
   .westan-charts-streaming__hero h1,
   .westan-streaming-header h1 {
@@ -1246,6 +1488,7 @@ body[class*="dark"] .westan-charts-shell {
   color: #f8fafc;
 
   .westan-charts-rankings h2,
+  .westan-charts-artist-rankings h2,
   .westan-charts-chart-header h1,
   .westan-charts-streaming__hero h1,
   .westan-streaming-header h1,
@@ -1406,6 +1649,7 @@ body[class*="dark"] .westan-charts-shell {
 
   .westan-title,
   .westan-charts-rankings h2,
+  .westan-charts-artist-rankings h2,
   .westan-charts-chart-header h1,
   .westan-charts-streaming__hero h1,
   .westan-streaming-header h1 {
@@ -1423,7 +1667,8 @@ body[class*="dark"] .westan-charts-shell {
   }
 
   .westan-charts-ranking-row b,
-  .westan-charts-ranking-row strong {
+  .westan-charts-ranking-row strong,
+  .westan-charts-feature__link {
     color: var(--primary);
   }
 
