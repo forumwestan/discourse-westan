@@ -39,7 +39,7 @@ import HeroSlider from "../../components/westan-critic/hero-slider";
 
 <section class="westan-critic__section">
   <div class="westan-critic__section-header">
-    <h2>Álbuns adicionados recentemente</h2>
+    <h2>Álbuns avaliados recentemente</h2>
     <LinkTo @route="westan-critic.recent">→ Ver tudo</LinkTo>
   </div>
   <div class="westan-grid westan-grid--critic">
@@ -51,7 +51,7 @@ import HeroSlider from "../../components/westan-critic/hero-slider";
 
 <section class="westan-critic__section">
   <div class="westan-critic__section-header">
-    <h2>Faixas adicionadas recentemente</h2>
+    <h2>Faixas avaliadas recentemente</h2>
     <LinkTo @route="westan-critic.recent">→ Ver tudo</LinkTo>
   </div>
   <div class="westan-grid westan-grid--critic">

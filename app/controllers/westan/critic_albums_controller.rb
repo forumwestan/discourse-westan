@@ -8,16 +8,34 @@ module Westan
 
     def index
       scope = CriticAlbum.all
+      reviewed_only = params[:reviewed] == "true"
+
       scope = scope.where(type: params[:type]) if params[:type].present?
       scope = scope.released unless params[:include_upcoming] == "true"
       scope = scope.upcoming if params[:upcoming] == "true"
+      scope = scope.reviewed if reviewed_only && params[:order] != "reviewed"
 
       if params[:released_since].present?
         scope = scope.where("release_date >= ?", params[:released_since])
       end
 
-      order = params[:order] == "created" ? { created_at: :desc } : { release_date: :desc }
-      scope = scope.order(order).limit((params[:limit] || 50).to_i)
+      if params[:released_until].present?
+        scope = scope.where("release_date <= ?", params[:released_until])
+      end
+
+      scope =
+        if params[:order] == "reviewed"
+          scope
+            .joins(:reviews)
+            .select("westan_critic_albums.*, MAX(westan_critic_reviews.created_at) AS last_reviewed_at_sort")
+            .group("westan_critic_albums.id")
+            .order("last_reviewed_at_sort DESC NULLS LAST, westan_critic_albums.created_at DESC")
+        else
+          order = params[:order] == "created" ? { created_at: :desc } : { release_date: :desc }
+          scope.order(order)
+        end
+
+      scope = scope.limit((params[:limit] || 50).to_i)
 
       render_serialized(scope, CriticAlbumSerializer, root: "albums")
     end

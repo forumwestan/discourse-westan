@@ -30,11 +30,19 @@ module Westan
         item.merge(
           "westan_type" => item_type,
           "westan_existing" => existing.present?,
-          "westan_existing_slug" => existing&.slug
+          "westan_existing_id" => existing&.id,
+          "westan_existing_slug" => existing&.slug,
+          "westan_existing_can_delete" => existing.present? && can_delete_existing?(existing)
         )
       end
 
       render json: payload.merge("data" => data)
+    end
+
+    private
+
+    def can_delete_existing?(album)
+      current_user&.staff? || album.created_by_id == current_user&.id
     end
   end
 end

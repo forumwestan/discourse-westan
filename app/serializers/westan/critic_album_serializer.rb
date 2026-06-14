@@ -7,7 +7,7 @@ module Westan
                :avg_user_score, :avg_critic_score,
                :user_review_count, :critic_review_count,
                :favorite_count, :favorited_by_current_user,
-               :created_at
+               :created_at, :last_reviewed_at
 
     def avg_user_score
       object.avg_user_score

@@ -17,6 +17,7 @@ export default class AddForm extends Component {
   @tracked loading = false;
   @tracked errorMessage = "";
   @tracked addingId = null;
+  @tracked deletingId = null;
 
   get displayResults() {
     return this.results.map((album) => ({
@@ -98,6 +99,42 @@ export default class AddForm extends Component {
     }
   }
 
+  @action
+  async removeExisting(deezerAlbum) {
+    const albumId = deezerAlbum.westan_existing_id;
+    if (!albumId) {
+      return;
+    }
+
+    this.deletingId = albumId;
+    this.errorMessage = "";
+
+    try {
+      await ajax(`/westan/critic/albums/${albumId}`, {
+        type: "DELETE",
+      });
+
+      this.results = this.results.map((album) => {
+        if (album.westan_existing_id !== albumId) {
+          return album;
+        }
+
+        return {
+          ...album,
+          westan_existing: false,
+          westan_existing_id: null,
+          westan_existing_slug: null,
+          westan_existing_can_delete: false,
+        };
+      });
+    } catch (e) {
+      const response = e.jqXHR?.responseJSON || e.responseJSON;
+      this.errorMessage = response?.error || "Não foi possível remover este item.";
+    } finally {
+      this.deletingId = null;
+    }
+  }
+
   <template>
     <div class="westan-add-form">
       <LinkTo @route="westan-critic.index" class="westan-add-form__back">‹ Westan Critic</LinkTo>
@@ -148,6 +185,16 @@ export default class AddForm extends Component {
                 >
                   +
                 </button>
+                {{#if album.westan_existing_can_delete}}
+                  <button
+                    type="button"
+                    class="westan-add-form__remove-button"
+                    disabled={{eq this.deletingId album.westan_existing_id}}
+                    {{on "click" (fn this.removeExisting album)}}
+                  >
+                    Remover duplicado
+                  </button>
+                {{/if}}
               </li>
             {{/each}}
           </ul>

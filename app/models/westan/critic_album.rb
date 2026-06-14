@@ -33,6 +33,11 @@ module Westan
     scope :singles, -> { where(type: "single") }
     scope :released, -> { where(is_upcoming: false) }
     scope :upcoming, -> { where(is_upcoming: true) }
+    scope :reviewed, -> { joins(:reviews).distinct }
+
+    def last_reviewed_at
+      reviews.maximum(:created_at)
+    end
 
     def user_reviews
       reviews.where(is_critic: false)

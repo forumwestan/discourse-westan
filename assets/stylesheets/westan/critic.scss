@@ -1042,6 +1042,24 @@
     }
   }
 
+  &__remove-button {
+    grid-column: 2 / 4;
+    justify-self: end;
+    min-height: 28px;
+    padding: 0 12px;
+    border: 1px solid rgba(239, 68, 68, 0.22);
+    border-radius: 999px;
+    background: #fff1f2;
+    color: #e11d48;
+    font-size: 0.74rem;
+    font-weight: 950;
+
+    &:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+  }
+
   &__empty {
     padding: 74px 0;
     color: #98a2b3;
@@ -1322,6 +1340,12 @@ body[class*="dark"] .westan-critic-shell {
   .westan-add-form__results li {
     border-bottom-color: rgba(255, 255, 255, 0.14);
   }
+
+  .westan-add-form__remove-button {
+    border-color: rgba(248, 113, 113, 0.28);
+    background: rgba(127, 29, 29, 0.3);
+    color: #fecdd3;
+  }
 }
 
 .dark-scheme .westan-critic-shell,
@@ -1401,6 +1425,12 @@ body[class*="dark"] .westan-critic-shell {
     border-color: rgba(255, 255, 255, 0.22);
     background: #fff;
     color: #9b5cf6;
+  }
+
+  .westan-add-form__remove-button {
+    border-color: rgba(248, 113, 113, 0.28);
+    background: rgba(127, 29, 29, 0.3);
+    color: #fecdd3;
   }
 }
 
@@ -1561,5 +1591,11 @@ body[class*="dark"] .westan-critic-shell {
   .westan-critic__section .westan-empty {
     background: color-mix(in srgb, #8b5cf6 7%, var(--secondary));
     color: var(--primary-medium);
+  }
+
+  .westan-add-form__remove-button {
+    border-color: color-mix(in srgb, #ef4444 35%, transparent);
+    background: color-mix(in srgb, #ef4444 12%, var(--secondary));
+    color: #fb7185;
   }
 }
