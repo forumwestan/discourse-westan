@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # name: discourse-westan
-# about: Westan features for Discourse — Charts (Last.fm) and Critic (albums/reviews) + hamburger side menu
+# about: Westan Critic (albums/reviews) and hamburger side menu for Discourse
 # meta_topic_id: 0
 # version: 0.1.0
 # authors: Westan
@@ -11,14 +11,11 @@
 enabled_site_setting :westan_enabled
 
 register_asset "stylesheets/westan/common.scss"
-register_asset "stylesheets/westan/charts.scss"
 register_asset "stylesheets/westan/critic.scss"
 register_asset "stylesheets/westan/side-menu.scss"
 
 register_svg_icon "star"
-register_svg_icon "chart-line"
 register_svg_icon "bars"
-register_svg_icon "music"
 register_svg_icon "pen-to-square"
 
 module ::Westan
@@ -36,7 +33,6 @@ after_initialize do
   require_relative "app/serializers/westan/critic_review_serializer"
   require_relative "app/controllers/westan/critic_albums_controller"
   require_relative "app/controllers/westan/critic_reviews_controller"
-  require_relative "app/controllers/westan/lastfm_controller"
   require_relative "app/controllers/westan/deezer_controller"
   require_relative "app/controllers/westan/admin_controller"
 
@@ -55,12 +51,7 @@ after_initialize do
     delete "/critic/reviews/:id"             => "critic_reviews#destroy"
     post   "/critic/reviews/:id/vote"        => "critic_reviews#vote"
 
-    # Proxies to external APIs
-    get    "/lastfm/auth-url"                => "lastfm#auth_url"
-    post   "/lastfm/session"                 => "lastfm#create_session"
-    patch  "/lastfm/username"                => "lastfm#update_username"
-    post   "/lastfm/username"                => "lastfm#update_username"
-    get    "/lastfm/*method"                 => "lastfm#proxy", format: false
+    # Deezer album search for Westan Critic
     get    "/deezer/search-album"            => "deezer#search_album"
   end
 
@@ -81,11 +72,6 @@ after_initialize do
     delete "/westan/critic/reviews/:id"      => "westan/critic_reviews#destroy"
     post   "/westan/critic/reviews/:id/vote" => "westan/critic_reviews#vote"
 
-    get    "/westan/lastfm/auth-url"         => "westan/lastfm#auth_url"
-    post   "/westan/lastfm/session"          => "westan/lastfm#create_session"
-    patch  "/westan/lastfm/username"         => "westan/lastfm#update_username"
-    post   "/westan/lastfm/username"         => "westan/lastfm#update_username"
-    get    "/westan/lastfm/*method"          => "westan/lastfm#proxy", format: false
     get    "/westan/deezer/search-album"     => "westan/deezer#search_album"
     patch  "/westan/admin/critic-hero-cards" => "westan/admin#update_hero_cards"
   end
@@ -93,16 +79,9 @@ after_initialize do
   Discourse::Application.routes.append do
     get "/critic" => "list#latest"
     get "/critic/*path" => "list#latest"
-    get "/charts" => "list#latest"
-    get "/charts/*path" => "list#latest"
     get "/admin/plugins/westan" => "list#latest"
     get "/admin/plugins/westan/*path" => "list#latest"
   end
-
-  User.register_custom_field_type("lastfm_username", :text)
-  User.register_custom_field_type("lastfm_session_key", :text)
-  register_editable_user_custom_field :lastfm_username
-  DiscoursePluginRegistry.serialized_current_user_fields << "lastfm_username"
 
   # Extend User with Westan-specific capabilities
   add_to_class(:user, :westan_can_add_critic_album?) do
@@ -115,9 +94,5 @@ after_initialize do
   add_to_serializer(:current_user, :westan_is_critic_editor) do
     object.staff? ||
       object.groups.where(name: SiteSetting.westan_critic_editor_group).exists?
-  end
-
-  add_to_serializer(:current_user, :westan_lastfm_username) do
-    object.custom_fields["lastfm_username"]
   end
 end

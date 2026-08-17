@@ -15,17 +15,6 @@ plugins:
     default: 10
     min: 0
     max: 1000
-  # ── Charts (Last.fm) ──────────────────────────────────────────────────────
-  westan_charts_enabled:
-    default: true
-    client: true
-  westan_lastfm_api_key:
-    default: ""
-    secret: true
-  westan_lastfm_shared_secret:
-    default: ""
-    secret: true
-
   # ── Deezer (album search for Critic Add) ──────────────────────────────────
   westan_deezer_api_base:
     default: "https://api.deezer.com"

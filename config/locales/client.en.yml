@@ -1,29 +1,6 @@
 en:
   js:
     westan:
-      charts:
-        title: "Westan Charts"
-        period:
-          weekly: "Weekly"
-          monthly: "Monthly"
-          yearly: "Yearly"
-          overall: "Overall"
-        top_artists: "Top Artists"
-        top_albums: "Top Albums"
-        top_tracks: "Top Tracks"
-        recent_tracks: "Recently Played"
-        no_lastfm: "Connect your Last.fm account on your profile to see your charts."
-        connect_lastfm: "Connect Last.fm"
-        connect_lastfm_description: "Authorize Westan on Last.fm or enter your username manually."
-        authorize_lastfm: "Authorize on Last.fm"
-        finishing_lastfm: "Finishing Last.fm connection..."
-        or_connect_manually: "or connect manually"
-        lastfm_username: "Last.fm username"
-        lastfm_username_placeholder: "Your Last.fm username"
-        save_lastfm: "Save Last.fm"
-        edit_lastfm: "Edit Last.fm"
-        lastfm_error: "We couldn't load your Last.fm charts. Check your username and try again."
-        sign_in_to_connect: "Sign in to connect"
       critic:
         title: "Westan Critic"
         nav:

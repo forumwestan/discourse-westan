@@ -82,13 +82,6 @@ export default class WestanSideMenu extends Component {
             </div>
           {{/if}}
 
-          {{#if this.siteSettings.westan_charts_enabled}}
-            <LinkTo @route="westan-charts" class="westan-side-menu__link westan-side-menu__link--widget" {{on "click" this.close}}>
-              <span class="westan-side-menu__link-icon">♪</span>
-              Westan Charts
-            </LinkTo>
-          {{/if}}
-
           {{#if this.siteSettings.westan_critic_enabled}}
             <LinkTo @route="westan-critic" class="westan-side-menu__link westan-side-menu__link--widget" {{on "click" this.close}}>
               <span class="westan-side-menu__link-icon">★</span>

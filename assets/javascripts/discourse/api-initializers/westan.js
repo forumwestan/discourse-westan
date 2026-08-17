@@ -9,12 +9,4 @@ export default apiInitializer("1.8.0", (api) => {
     text: "Westan Critic",
     icon: "star",
   });
-
-  api.addCommunitySectionLink?.({
-    name: "westan-charts",
-    route: "westan-charts",
-    title: "Westan Charts",
-    text: "Westan Charts",
-    icon: "chart-line",
-  });
 });

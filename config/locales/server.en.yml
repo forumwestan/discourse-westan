@@ -4,5 +4,3 @@ en:
       add:
         quota_reached: "Daily limit reached."
         already_added: "Já adicionado"
-    charts:
-      lastfm_username_required: "Last.fm username is required."
